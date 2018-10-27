@@ -253,6 +253,11 @@ public class Clerk extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         acc_new = new javax.swing.JMenuItem();
         rej_new = new javax.swing.JMenuItem();
+        jDialog18 = new javax.swing.JDialog();
+        kGradientPanel9 = new keeptoo.KGradientPanel();
+        kButton8 = new keeptoo.KButton();
+        jLabel14 = new javax.swing.JLabel();
+        jdel_username = new javax.swing.JTextField();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         t_name = new javax.swing.JTextField();
@@ -270,6 +275,7 @@ public class Clerk extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -894,6 +900,56 @@ public class Clerk extends javax.swing.JFrame {
         });
         jPopupMenu4.add(rej_new);
 
+        kGradientPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        kGradientPanel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        kGradientPanel9.setkEndColor(new java.awt.Color(204, 0, 204));
+        kGradientPanel9.setkStartColor(new java.awt.Color(0, 102, 102));
+        kGradientPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        kButton8.setText("Delete User");
+        kButton8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        kButton8.setkBorderRadius(40);
+        kButton8.setkEndColor(new java.awt.Color(102, 102, 255));
+        kButton8.setkHoverStartColor(new java.awt.Color(51, 51, 51));
+        kButton8.setOpaque(false);
+        kButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton8ActionPerformed(evt);
+            }
+        });
+        kGradientPanel9.add(kButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setText("Select Student");
+        kGradientPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
+
+        jdel_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jdel_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        jdel_username.setOpaque(false);
+        jdel_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jdel_usernameActionPerformed(evt);
+            }
+        });
+        kGradientPanel9.add(jdel_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 210, 39));
+
+        javax.swing.GroupLayout jDialog18Layout = new javax.swing.GroupLayout(jDialog18.getContentPane());
+        jDialog18.getContentPane().setLayout(jDialog18Layout);
+        jDialog18Layout.setHorizontalGroup(
+            jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog18Layout.createSequentialGroup()
+                .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jDialog18Layout.setVerticalGroup(
+            jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 204));
@@ -1008,6 +1064,14 @@ public class Clerk extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem8);
+
+        jMenuItem12.setText("Delete User");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
 
         jMenuBar1.add(jMenu1);
 
@@ -1424,6 +1488,34 @@ public class Clerk extends javax.swing.JFrame {
         jDialog11.setVisible(false);
     }//GEN-LAST:event_rej_newActionPerformed
 
+    private void kButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton8ActionPerformed
+        // TODO add your handling code here:
+         String search=jdel_username.getText();
+        
+        if(obj.SearchUser(search))
+        {
+            
+            obj.deluser(username);
+            JOptionPane.showMessageDialog(null, "User deleted"); 
+            jDialog18.setVisible(false);
+            
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No user with such username");      }
+        
+    }//GEN-LAST:event_kButton8ActionPerformed
+
+    private void jdel_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdel_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jdel_usernameActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        jDialog18.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1472,6 +1564,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog10;
     private javax.swing.JDialog jDialog11;
+    private javax.swing.JDialog jDialog18;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
     private javax.swing.JDialog jDialog4;
@@ -1484,6 +1577,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1501,6 +1595,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -1519,6 +1614,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JComboBox<String> jc_book;
     private javax.swing.JComboBox<String> jc_books;
+    private javax.swing.JTextField jdel_username;
     private javax.swing.JTextField jedit_username;
     private keeptoo.KButton kButton1;
     private keeptoo.KButton kButton2;
@@ -1526,6 +1622,7 @@ public class Clerk extends javax.swing.JFrame {
     private keeptoo.KButton kButton5;
     private keeptoo.KButton kButton6;
     private keeptoo.KButton kButton7;
+    private keeptoo.KButton kButton8;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel3;
@@ -1534,6 +1631,7 @@ public class Clerk extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel6;
     private keeptoo.KGradientPanel kGradientPanel7;
     private keeptoo.KGradientPanel kGradientPanel8;
+    private keeptoo.KGradientPanel kGradientPanel9;
     private javax.swing.JTextField l_book;
     private javax.swing.JLabel l_label123;
     private javax.swing.JPasswordField n_password;

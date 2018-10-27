@@ -181,6 +181,10 @@ public class Users_class {
       {
           
       }
+      public void deluser(String Username)
+      {
+          
+      }
    
          
 }

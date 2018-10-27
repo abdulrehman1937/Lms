@@ -288,6 +288,11 @@ public class Librarian extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         acc_new = new javax.swing.JMenuItem();
         rej_new = new javax.swing.JMenuItem();
+        jDialog18 = new javax.swing.JDialog();
+        kGradientPanel13 = new keeptoo.KGradientPanel();
+        kButton12 = new keeptoo.KButton();
+        jLabel14 = new javax.swing.JLabel();
+        jdel_username = new javax.swing.JTextField();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         t_name = new javax.swing.JTextField();
@@ -307,6 +312,7 @@ public class Librarian extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -721,7 +727,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel24.setText("jLabel10");
         kGradientPanel9.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 90, 50));
 
-        jTextField15.setEditable(false);
         jTextField15.setBackground(new java.awt.Color(255, 255, 255));
         jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField15.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -1253,6 +1258,56 @@ public class Librarian extends javax.swing.JFrame {
         });
         jPopupMenu4.add(rej_new);
 
+        kGradientPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        kGradientPanel13.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        kGradientPanel13.setkEndColor(new java.awt.Color(204, 0, 204));
+        kGradientPanel13.setkStartColor(new java.awt.Color(0, 102, 102));
+        kGradientPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        kButton12.setText("Delete User");
+        kButton12.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        kButton12.setkBorderRadius(40);
+        kButton12.setkEndColor(new java.awt.Color(102, 102, 255));
+        kButton12.setkHoverStartColor(new java.awt.Color(51, 51, 51));
+        kButton12.setOpaque(false);
+        kButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton12ActionPerformed(evt);
+            }
+        });
+        kGradientPanel13.add(kButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setText("Select Student");
+        kGradientPanel13.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
+
+        jdel_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jdel_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        jdel_username.setOpaque(false);
+        jdel_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jdel_usernameActionPerformed(evt);
+            }
+        });
+        kGradientPanel13.add(jdel_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 210, 39));
+
+        javax.swing.GroupLayout jDialog18Layout = new javax.swing.GroupLayout(jDialog18.getContentPane());
+        jDialog18.getContentPane().setLayout(jDialog18Layout);
+        jDialog18Layout.setHorizontalGroup(
+            jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog18Layout.createSequentialGroup()
+                .addComponent(kGradientPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jDialog18Layout.setVerticalGroup(
+            jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kGradientPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 204));
@@ -1383,6 +1438,14 @@ public class Librarian extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem15);
+
+        jMenuItem12.setText("Delete User");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
 
         jMenuBar1.add(jMenu1);
 
@@ -1934,6 +1997,33 @@ public class Librarian extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bk_newidActionPerformed
 
+    private void kButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton12ActionPerformed
+        // TODO add your handling code here:
+        String search=jdel_username.getText();
+
+        if(obj.SearchUser(search))
+        {
+
+            obj.deluser(username);
+            JOptionPane.showMessageDialog(null, "User deleted");
+            jDialog18.setVisible(false);
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No user with such username");      }
+
+    }//GEN-LAST:event_kButton12ActionPerformed
+
+    private void jdel_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdel_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jdel_usernameActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        jDialog18.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1991,6 +2081,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog13;
     private javax.swing.JDialog jDialog14;
     private javax.swing.JDialog jDialog15;
+    private javax.swing.JDialog jDialog18;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
     private javax.swing.JDialog jDialog4;
@@ -2003,6 +2094,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -2032,6 +2124,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
@@ -2054,10 +2147,12 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JComboBox<String> jc_book;
     private javax.swing.JComboBox<String> jc_books;
+    private javax.swing.JTextField jdel_username;
     private javax.swing.JTextField jedit_username;
     private keeptoo.KButton kButton1;
     private keeptoo.KButton kButton10;
     private keeptoo.KButton kButton11;
+    private keeptoo.KButton kButton12;
     private keeptoo.KButton kButton2;
     private keeptoo.KButton kButton4;
     private keeptoo.KButton kButton5;
@@ -2069,6 +2164,7 @@ public class Librarian extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel10;
     private keeptoo.KGradientPanel kGradientPanel11;
     private keeptoo.KGradientPanel kGradientPanel12;
+    private keeptoo.KGradientPanel kGradientPanel13;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel3;
     private keeptoo.KGradientPanel kGradientPanel4;

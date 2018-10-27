@@ -154,9 +154,19 @@ public class Library {
     {
         allusers.add(a);
     }
-    public void removeuser(Users_class a)
+    public void removeuser(String Username)
     {
+        Users_class a=new Users_class();
+        ListIterator<Users_class>it=null;
+        it=allusers.listIterator();
+        while(it.hasNext())
+        {
+            a=it.next();
+            if(a.username.equals(Username))
+                break;
+        }
         allusers.remove(a);
+        
     }
     public void addtohistory(Book_loan a)
     {

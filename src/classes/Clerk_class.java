@@ -95,10 +95,7 @@ public class Clerk_class extends Borrower_class {
         booksret.remove(obj);
     }
     */
-    public void removeuser(Users_class a)
-    {
-        lib.removeuser(a);
-    }
+   
     @Override
     public void adduser(int row)
     {
@@ -127,4 +124,10 @@ public class Clerk_class extends Borrower_class {
         lib.removenewuser(row);
         
     }
+    @Override
+     public void deluser(String Username)
+      {
+          
+          lib.removeuser(Username);
+      }
 }
