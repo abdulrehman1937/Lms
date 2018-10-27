@@ -233,8 +233,7 @@ public class Librarian extends javax.swing.JFrame {
         kGradientPanel10 = new keeptoo.KGradientPanel();
         kButton9 = new keeptoo.KButton();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        t_editbook = new javax.swing.JTextField();
         jDialog12 = new javax.swing.JDialog();
         kGradientPanel11 = new keeptoo.KGradientPanel();
         kButton10 = new keeptoo.KButton();
@@ -740,21 +739,17 @@ public class Librarian extends javax.swing.JFrame {
         jLabel25.setText("Select Book");
         kGradientPanel10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication3/Capture.PNG"))); // NOI18N
-        jLabel26.setText("jLabel10");
-        kGradientPanel10.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 90, 50));
-
-        jTextField16.setEditable(false);
-        jTextField16.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField16.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField16.setOpaque(false);
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+        t_editbook.setEditable(false);
+        t_editbook.setBackground(new java.awt.Color(255, 255, 255));
+        t_editbook.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_editbook.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        t_editbook.setOpaque(false);
+        t_editbook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
+                t_editbookActionPerformed(evt);
             }
         });
-        kGradientPanel10.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 210, 39));
+        kGradientPanel10.add(t_editbook, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 210, 39));
 
         javax.swing.GroupLayout jDialog11Layout = new javax.swing.GroupLayout(jDialog11.getContentPane());
         jDialog11.getContentPane().setLayout(jDialog11Layout);
@@ -1445,18 +1440,8 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        String search=jedit_username.getText();
+        jDialog7.setVisible(true);
         
-        if(obj.SearchUser(search))
-        {
-            username=search;
-            jDialog7.setVisible(false);
-            jDialog8.setVisible(true);
-
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "No user with such username");      }
         
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -1506,7 +1491,19 @@ public class Librarian extends javax.swing.JFrame {
 
     private void kButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton5ActionPerformed
         // TODO add your handling code here:
-        jDialog8.show();
+        String search=jedit_username.getText();
+        
+        if(obj.SearchUser(search))
+        {
+            username=search;
+            jDialog7.setVisible(false);
+            jDialog8.setVisible(true);
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No user with such username");      }
+        
     }//GEN-LAST:event_kButton5ActionPerformed
 
     private void jedit_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jedit_usernameActionPerformed
@@ -1527,12 +1524,13 @@ public class Librarian extends javax.swing.JFrame {
 
     private void kButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton9ActionPerformed
         // TODO add your handling code here:
+        int id=
         jDialog12.show();
     }//GEN-LAST:event_kButton9ActionPerformed
 
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+    private void t_editbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_editbookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
+    }//GEN-LAST:event_t_editbookActionPerformed
 
     private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
         // TODO add your handling code here:
@@ -1564,7 +1562,7 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        jDialog9.show();
+        jDialog9.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -1574,7 +1572,7 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        jDialog11.show();
+        jDialog11.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
@@ -1894,7 +1892,6 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1930,7 +1927,6 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
@@ -1970,6 +1966,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JMenuItem req_acc;
     private javax.swing.JMenuItem req_rej;
     private javax.swing.JMenuItem ret_acc;
+    private javax.swing.JTextField t_editbook;
     private javax.swing.JTextField t_email;
     private javax.swing.JTextField t_name;
     private javax.swing.JTextField t_pno;

@@ -50,4 +50,9 @@ public class Librarian_class extends Clerk_class {
     {
         return 3;
     }
+    @Override
+    public int book_id(int id)
+      {
+          return 0;
+      }
 }

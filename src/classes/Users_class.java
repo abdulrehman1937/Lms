@@ -169,5 +169,9 @@ public class Users_class {
     {
         return null;
     }
+      public int book_id(int id)
+      {
+          return 0;
+      }
          
 }

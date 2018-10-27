@@ -694,11 +694,17 @@ public class Clerk extends javax.swing.JFrame {
         jDialog8.getContentPane().setLayout(jDialog8Layout);
         jDialog8Layout.setHorizontalGroup(
             jDialog8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jDialog8Layout.setVerticalGroup(
             jDialog8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jDialog9.setSize(new java.awt.Dimension(500, 500));
