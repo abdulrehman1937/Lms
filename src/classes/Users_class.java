@@ -169,9 +169,18 @@ public class Users_class {
     {
         return null;
     }
-      public int book_id(int id)
+      public boolean book_id(int id)
       {
-          return 0;
+          return false;
       }
+      public void updateBook(int id,String Title,String Author,String Subject,String Edition)
+      {
+          
+      }
+      public void addBook(int id,String Title,String Author,String Subject,String Edition)
+      {
+          
+      }
+   
          
 }

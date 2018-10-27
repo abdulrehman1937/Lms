@@ -176,6 +176,20 @@ public class Library {
         }
         return null;
     }
+    public boolean Searchbyid(int id)
+    {
+        Book a=new Book();
+        ListIterator<Book>it=allbooks.listIterator();
+        while(it.hasNext())
+        {
+            a=it.next();
+            if(a.getId()==id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public Users_class signeduser(String username,String password,int type)
     {
         Users_class a=new Users_class();
@@ -285,6 +299,24 @@ public class Library {
     public void removenewuser(int index)
     {
         newusers.remove(index);
+    }
+    public void updateBook(int id,String Title,String Author,String Subject,String Edition)
+    {
+        Book temp=null;
+        ListIterator<Book> it=null;
+        it=allbooks.listIterator();
+        while(it.hasNext())
+        {
+            temp=it.next();
+            if(temp.getId()==id)
+            {
+                break;
+            }
+        }
+        temp.setAuthor(Author);
+        temp.setEdition(Edition);
+        temp.setSubject(Subject);
+        temp.setTitle(Title);
     }
 }
 

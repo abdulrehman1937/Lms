@@ -94,19 +94,19 @@ public class Clerk extends javax.swing.JFrame {
             int rows=newusers.size();
          model.setRowCount(rows);
          model.setColumnCount(6);
-         tl_books.setModel(model);
+         tl_newusers.setModel(model);
          ListIterator<register_class> iter=null;
          iter=newusers.listIterator();
           int i=0;
          while (iter.hasNext()) {
              register_class temp=iter.next();
              
-             tl_books.setValueAt(Integer.toString(i+1),i,0);
-             tl_books.setValueAt(temp.getusername(),i,1);
-         tl_books.setValueAt(temp.getpass(),i,2);
-         tl_books.setValueAt(temp.getname(),i,3);
-         tl_books.setValueAt(temp.getemail(),i,4);
-         tl_books.setValueAt(temp.getpno(),i,5);
+             tl_newusers.setValueAt(Integer.toString(i+1),i,0);
+             tl_newusers.setValueAt(temp.getusername(),i,1);
+         tl_newusers.setValueAt(temp.getpass(),i,2);
+         tl_newusers.setValueAt(temp.getname(),i,3);
+         tl_newusers.setValueAt(temp.getemail(),i,4);
+         tl_newusers.setValueAt(temp.getpno(),i,5);
          
          i++;
       }

@@ -26,6 +26,7 @@ public class Librarian extends javax.swing.JFrame {
     String username="";
     private Users_class obj;
     private Book book_loan;
+    int bk_id=-1;
     /**
      * Creates new form Librarian
      */
@@ -63,19 +64,19 @@ public class Librarian extends javax.swing.JFrame {
             int rows=newusers.size();
          model.setRowCount(rows);
          model.setColumnCount(6);
-         tl_books.setModel(model);
+         tl_newusers.setModel(model);
          ListIterator<register_class> iter=null;
          iter=newusers.listIterator();
           int i=0;
          while (iter.hasNext()) {
              register_class temp=iter.next();
              
-             tl_books.setValueAt(Integer.toString(i+1),i,0);
-             tl_books.setValueAt(temp.getusername(),i,1);
-         tl_books.setValueAt(temp.getpass(),i,2);
-         tl_books.setValueAt(temp.getname(),i,3);
-         tl_books.setValueAt(temp.getemail(),i,4);
-         tl_books.setValueAt(temp.getpno(),i,5);
+             tl_newusers.setValueAt(Integer.toString(i+1),i,0);
+             tl_newusers.setValueAt(temp.getusername(),i,1);
+         tl_newusers.setValueAt(temp.getpass(),i,2);
+         tl_newusers.setValueAt(temp.getname(),i,3);
+         tl_newusers.setValueAt(temp.getemail(),i,4);
+         tl_newusers.setValueAt(temp.getpno(),i,5);
          
          i++;
       }
@@ -220,9 +221,13 @@ public class Librarian extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
+        bk_newtitle = new javax.swing.JTextField();
+        bk_newauthor = new javax.swing.JTextField();
+        bk_newsub = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        bk_newed = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        bk_newid = new javax.swing.JTextField();
         jDialog10 = new javax.swing.JDialog();
         kGradientPanel9 = new keeptoo.KGradientPanel();
         kButton8 = new keeptoo.KButton();
@@ -240,9 +245,11 @@ public class Librarian extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
+        t_bktitle = new javax.swing.JTextField();
+        t_bkauthor = new javax.swing.JTextField();
+        t_bked = new javax.swing.JTextField();
+        t_bksub = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
         jDialog2 = new javax.swing.JDialog();
         kGradientPanel3 = new keeptoo.KGradientPanel();
         kButton2 = new keeptoo.KButton();
@@ -587,7 +594,7 @@ public class Librarian extends javax.swing.JFrame {
                 kButton7ActionPerformed(evt);
             }
         });
-        kGradientPanel8.add(kButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        kGradientPanel8.add(kButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
@@ -604,41 +611,70 @@ public class Librarian extends javax.swing.JFrame {
         jLabel22.setText("Book Subject");
         kGradientPanel8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, 30));
 
-        jTextField17.setEditable(false);
-        jTextField17.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField17.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField17.setOpaque(false);
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+        bk_newtitle.setBackground(new java.awt.Color(255, 255, 255));
+        bk_newtitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bk_newtitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        bk_newtitle.setOpaque(false);
+        bk_newtitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
+                bk_newtitleActionPerformed(evt);
             }
         });
-        kGradientPanel8.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 39));
+        kGradientPanel8.add(bk_newtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 39));
 
-        jTextField18.setEditable(false);
-        jTextField18.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField18.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField18.setOpaque(false);
-        jTextField18.addActionListener(new java.awt.event.ActionListener() {
+        bk_newauthor.setBackground(new java.awt.Color(255, 255, 255));
+        bk_newauthor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bk_newauthor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        bk_newauthor.setOpaque(false);
+        bk_newauthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField18ActionPerformed(evt);
+                bk_newauthorActionPerformed(evt);
             }
         });
-        kGradientPanel8.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 39));
+        kGradientPanel8.add(bk_newauthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 39));
 
-        jTextField19.setEditable(false);
-        jTextField19.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField19.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField19.setOpaque(false);
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+        bk_newsub.setBackground(new java.awt.Color(255, 255, 255));
+        bk_newsub.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bk_newsub.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        bk_newsub.setOpaque(false);
+        bk_newsub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
+                bk_newsubActionPerformed(evt);
             }
         });
-        kGradientPanel8.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, 39));
+        kGradientPanel8.add(bk_newsub, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, 39));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel26.setText("Book Edition");
+        kGradientPanel8.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, 30));
+
+        bk_newed.setBackground(new java.awt.Color(255, 255, 255));
+        bk_newed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bk_newed.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        bk_newed.setOpaque(false);
+        bk_newed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bk_newedActionPerformed(evt);
+            }
+        });
+        kGradientPanel8.add(bk_newed, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 210, 39));
+
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel31.setText("Book Id");
+        kGradientPanel8.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 120, 30));
+
+        bk_newid.setBackground(new java.awt.Color(255, 255, 255));
+        bk_newid.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bk_newid.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        bk_newid.setOpaque(false);
+        bk_newid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bk_newidActionPerformed(evt);
+            }
+        });
+        kGradientPanel8.add(bk_newid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 210, 39));
 
         javax.swing.GroupLayout jDialog9Layout = new javax.swing.GroupLayout(jDialog9.getContentPane());
         jDialog9.getContentPane().setLayout(jDialog9Layout);
@@ -646,13 +682,13 @@ public class Librarian extends javax.swing.JFrame {
             jDialog9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog9Layout.createSequentialGroup()
                 .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 117, Short.MAX_VALUE))
         );
         jDialog9Layout.setVerticalGroup(
             jDialog9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog9Layout.createSequentialGroup()
-                .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 38, Short.MAX_VALUE))
         );
 
         jDialog10.setSize(new java.awt.Dimension(500, 500));
@@ -739,7 +775,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel25.setText("Select Book");
         kGradientPanel10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
 
-        t_editbook.setEditable(false);
         t_editbook.setBackground(new java.awt.Color(255, 255, 255));
         t_editbook.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_editbook.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -786,7 +821,7 @@ public class Librarian extends javax.swing.JFrame {
                 kButton10ActionPerformed(evt);
             }
         });
-        kGradientPanel11.add(kButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        kGradientPanel11.add(kButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(204, 204, 204));
@@ -800,57 +835,70 @@ public class Librarian extends javax.swing.JFrame {
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel29.setText("Book Subject");
-        kGradientPanel11.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, 30));
+        jLabel29.setText("Book Edition");
+        kGradientPanel11.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, 30));
 
-        jTextField20.setEditable(false);
-        jTextField20.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField20.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField20.setOpaque(false);
-        jTextField20.addActionListener(new java.awt.event.ActionListener() {
+        t_bktitle.setBackground(new java.awt.Color(255, 255, 255));
+        t_bktitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_bktitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        t_bktitle.setOpaque(false);
+        t_bktitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField20ActionPerformed(evt);
+                t_bktitleActionPerformed(evt);
             }
         });
-        kGradientPanel11.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 39));
+        kGradientPanel11.add(t_bktitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 39));
 
-        jTextField21.setEditable(false);
-        jTextField21.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField21.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField21.setOpaque(false);
-        jTextField21.addActionListener(new java.awt.event.ActionListener() {
+        t_bkauthor.setBackground(new java.awt.Color(255, 255, 255));
+        t_bkauthor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_bkauthor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        t_bkauthor.setOpaque(false);
+        t_bkauthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField21ActionPerformed(evt);
+                t_bkauthorActionPerformed(evt);
             }
         });
-        kGradientPanel11.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 39));
+        kGradientPanel11.add(t_bkauthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 39));
 
-        jTextField22.setEditable(false);
-        jTextField22.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField22.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField22.setOpaque(false);
-        jTextField22.addActionListener(new java.awt.event.ActionListener() {
+        t_bked.setBackground(new java.awt.Color(255, 255, 255));
+        t_bked.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_bked.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        t_bked.setOpaque(false);
+        t_bked.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField22ActionPerformed(evt);
+                t_bkedActionPerformed(evt);
             }
         });
-        kGradientPanel11.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, 39));
+        kGradientPanel11.add(t_bked, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 210, 39));
+
+        t_bksub.setBackground(new java.awt.Color(255, 255, 255));
+        t_bksub.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_bksub.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        t_bksub.setOpaque(false);
+        t_bksub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_bksubActionPerformed(evt);
+            }
+        });
+        kGradientPanel11.add(t_bksub, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, 39));
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel30.setText("Book Subject");
+        kGradientPanel11.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, 30));
 
         javax.swing.GroupLayout jDialog12Layout = new javax.swing.GroupLayout(jDialog12.getContentPane());
         jDialog12.getContentPane().setLayout(jDialog12Layout);
         jDialog12Layout.setHorizontalGroup(
             jDialog12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog12Layout.createSequentialGroup()
-                .addComponent(kGradientPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog12Layout.createSequentialGroup()
+                .addComponent(kGradientPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jDialog12Layout.setVerticalGroup(
             jDialog12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog12Layout.createSequentialGroup()
-                .addComponent(kGradientPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog12Layout.createSequentialGroup()
+                .addComponent(kGradientPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1502,7 +1550,8 @@ public class Librarian extends javax.swing.JFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "No user with such username");      }
+            JOptionPane.showMessageDialog(null, "No user with such username");
+        }
         
     }//GEN-LAST:event_kButton5ActionPerformed
 
@@ -1512,6 +1561,36 @@ public class Librarian extends javax.swing.JFrame {
 
     private void kButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton7ActionPerformed
         // TODO add your handling code here:
+        String title=bk_newtitle.getText();
+        String author=bk_newauthor.getText();
+        String subject=bk_newsub.getText();
+        String edition=bk_newed.getText();
+        String ID=bk_newid.getText();
+        if(title.isEmpty() || author.isEmpty() || subject.isEmpty() || edition.isEmpty() || ID.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "All feilds are required");
+        }
+        
+        else if (ID.matches("[0-9]+") && ID.length() >=1)
+        {
+            
+            int id=Integer.parseInt(ID);
+            if(obj.book_id(id))
+            {
+                JOptionPane.showMessageDialog(null, "Book id already exists");
+            }
+            else
+            {
+            obj.addBook(id, title, author, subject, edition);
+            JOptionPane.showMessageDialog(null, "Book added");
+            jDialog9.setVisible(false);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Book id must be integer");
+        }
+            
     }//GEN-LAST:event_kButton7ActionPerformed
 
     private void kButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton8ActionPerformed
@@ -1524,41 +1603,67 @@ public class Librarian extends javax.swing.JFrame {
 
     private void kButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton9ActionPerformed
         // TODO add your handling code here:
-        int id=
-        jDialog12.show();
+        String a=t_editbook.getText();
+         bk_id=Integer.parseInt(a);
+        if(obj.book_id(bk_id))
+        {
+           jDialog12.setVisible(true);
+           jDialog11.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No book with such id");
+            
+        }
+        
     }//GEN-LAST:event_kButton9ActionPerformed
 
     private void t_editbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_editbookActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_editbookActionPerformed
 
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+    private void bk_newtitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bk_newtitleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
+    }//GEN-LAST:event_bk_newtitleActionPerformed
 
-    private void jTextField18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField18ActionPerformed
+    private void bk_newauthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bk_newauthorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField18ActionPerformed
+    }//GEN-LAST:event_bk_newauthorActionPerformed
 
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+    private void bk_newsubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bk_newsubActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
+    }//GEN-LAST:event_bk_newsubActionPerformed
 
     private void kButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton10ActionPerformed
         // TODO add your handling code here:
+        String title=t_bktitle.getText();
+        String author=t_bkauthor.getText();
+        String subject=t_bksub.getText();
+        String edition=t_bked.getText();
+        if(title.isEmpty() || author.isEmpty() || subject.isEmpty() || edition.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "All feilds are required");
+        }
+        else
+        {
+            obj.updateBook(bk_id, title, author, subject, edition);
+            JOptionPane.showMessageDialog(null, "Book updated");
+            jDialog12.setVisible(false);
+        }
+        
     }//GEN-LAST:event_kButton10ActionPerformed
 
-    private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
+    private void t_bktitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_bktitleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField20ActionPerformed
+    }//GEN-LAST:event_t_bktitleActionPerformed
 
-    private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
+    private void t_bkauthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_bkauthorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField21ActionPerformed
+    }//GEN-LAST:event_t_bkauthorActionPerformed
 
-    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+    private void t_bkedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_bkedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField22ActionPerformed
+    }//GEN-LAST:event_t_bkedActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
@@ -1817,6 +1922,18 @@ public class Librarian extends javax.swing.JFrame {
         jDialog15.setVisible(false);
     }//GEN-LAST:event_rej_newActionPerformed
 
+    private void t_bksubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_bksubActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_bksubActionPerformed
+
+    private void bk_newedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bk_newedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bk_newedActionPerformed
+
+    private void bk_newidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bk_newidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bk_newidActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1854,6 +1971,11 @@ public class Librarian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acc_new;
+    private javax.swing.JTextField bk_newauthor;
+    private javax.swing.JTextField bk_newed;
+    private javax.swing.JTextField bk_newid;
+    private javax.swing.JTextField bk_newsub;
+    private javax.swing.JTextField bk_newtitle;
     private keeptoo.KButton book_return;
     private javax.swing.JPasswordField c_password;
     private javax.swing.JTextField et_email;
@@ -1892,10 +2014,13 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1927,12 +2052,6 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
     private javax.swing.JComboBox<String> jc_book;
     private javax.swing.JComboBox<String> jc_books;
     private javax.swing.JTextField jedit_username;
@@ -1966,6 +2085,10 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JMenuItem req_acc;
     private javax.swing.JMenuItem req_rej;
     private javax.swing.JMenuItem ret_acc;
+    private javax.swing.JTextField t_bkauthor;
+    private javax.swing.JTextField t_bked;
+    private javax.swing.JTextField t_bksub;
+    private javax.swing.JTextField t_bktitle;
     private javax.swing.JTextField t_editbook;
     private javax.swing.JTextField t_email;
     private javax.swing.JTextField t_name;

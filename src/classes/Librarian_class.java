@@ -35,11 +35,7 @@ public class Librarian_class extends Clerk_class {
         this.credentials=a;
       //  this.allstudents=allstudents;
     }
-    @Override
-    public void addbook(Book a)
-    {
-        lib.addbook(a);
-    }
+    
     @Override
     public void delbook(Book a)
     {
@@ -51,8 +47,20 @@ public class Librarian_class extends Clerk_class {
         return 3;
     }
     @Override
-    public int book_id(int id)
+    public boolean book_id(int id)
       {
-          return 0;
+          return lib.Searchbyid(id);
       }
+    @Override
+    public void updateBook(int id,String Title,String Author,String Subject,String Edition)
+    {
+        lib.updateBook(id, Title, Author, Subject, Edition);
+    }
+    @Override
+    public void addBook(int id,String Title,String Author,String Subject,String Edition)
+    {
+        Book temp=new Book(id,Title,Author,Subject,Edition,1);
+        lib.addbook(temp);
+    }
+    
 }
