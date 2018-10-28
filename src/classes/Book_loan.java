@@ -20,6 +20,7 @@ public class Book_loan {
     private Date returndate;
     private Date returneddate;
     private Book loaned_book;
+    private int copyno;
     public Book_loan()
     {
         loaner=null;
@@ -29,9 +30,11 @@ public class Book_loan {
         returneddate=null;
         loaned_book=null;
         fine=0;
+        copyno=0;
     }
-    public Book_loan(Users_class loaner,Book loaned_book)
+    public Book_loan(Users_class loaner,Book loaned_book,int copyno)
     {
+        this.copyno=copyno;
         fine=0;
         LocalDate date=LocalDate.now();
         this.returneddate=new Date(1899,11,11);
@@ -40,8 +43,9 @@ public class Book_loan {
         this.issuedate=new Date(date.getYear(),date.getMonthValue(),date.getDayOfMonth());
         this.returndate=new Date(date.getYear(),date.getMonthValue(),date.getDayOfMonth()+7);
     }
-    public Book_loan(Users_class loaner,Book loaned_book,Date issuedate,Date retdate,Date returneddate,int fine)
+    public Book_loan(Users_class loaner,Book loaned_book,Date issuedate,Date retdate,Date returneddate,int fine,int copyno)
     {
+        this.copyno=copyno;
         this.fine=fine;
         this.returneddate=returneddate;
         this.loaner=loaner;
@@ -96,6 +100,10 @@ public class Book_loan {
     public Users_class getuser()
     {
         return this.loaner;
+    }
+    public int getcopy()
+    {
+        return this.copyno;
     }
     
     

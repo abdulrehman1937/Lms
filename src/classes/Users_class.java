@@ -80,7 +80,7 @@ public class Users_class {
     {
         
     }
-    public Book Search(String Name)
+    public ArrayList<Book> Search(String Name)
     {
         return lib.Search(Name);
     }
@@ -195,6 +195,18 @@ public class Users_class {
               fine+=temp.myfine();
           }
           return fine;
+      }
+      public boolean searchbook(Book bk)
+      {
+          ListIterator<Book_loan> it=null;
+          it=Books.listIterator();
+          while(it.hasNext())
+          {
+              Book_loan temp=it.next();
+              if(temp.getbook().equals(bk))
+              return true;
+          }
+          return false;
       }
    
          

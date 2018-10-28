@@ -26,6 +26,7 @@ public class Librarian extends javax.swing.JFrame {
     String username="";
     private Users_class obj;
     private Book book_loan;
+    private ArrayList<Book> book_loans;
     int bk_id=-1;
     /**
      * Creates new form Librarian
@@ -105,6 +106,7 @@ public class Librarian extends javax.swing.JFrame {
          model.setRowCount(rows);
         model.addColumn("Sr No.");
          model.addColumn("Book");
+         
          model.addColumn("Issue Data");
          model.addColumn("Expiry Date");
          model.addColumn("Fine");
@@ -139,8 +141,10 @@ public class Librarian extends javax.swing.JFrame {
             int rows=Books.size();
          model.setRowCount(rows);
         model.addColumn("Sr No.");
-         model.addColumn("Book");
-          model.addColumn("User Name");
+        model.addColumn("User Name"); 
+        model.addColumn("Book");
+         model.addColumn("Copy NO.");
+          
          model.addColumn("Issue Data");
          model.addColumn("Expiry Date");
          model.addColumn("Returned Data");
@@ -154,12 +158,13 @@ public class Librarian extends javax.swing.JFrame {
              Book_loan temp=iter.next();
              String book=temp.getbook().getTitle()+" by "+temp.getbook().getAuthor()+" edition "+temp.getbook().getEdition();
              tl_history.setValueAt(Integer.toString(i+1),i,0);
-             tl_history.setValueAt(book,i,1);
-             tl_history.setValueAt(temp.getuser().username,i,2);
-         tl_history.setValueAt(temp.getissue(),i,3);
-         tl_history.setValueAt(temp.getret(),i,4);
-         tl_history.setValueAt(temp.getreted(),i,5);
-             tl_history.setValueAt(temp.getfine(),i,6); 
+             tl_history.setValueAt(book,i,2);
+             tl_history.setValueAt(temp.getuser().username,i,1);
+         tl_history.setValueAt(temp.getissue(),i,4);
+         tl_history.setValueAt(temp.getret(),i,5);
+         tl_history.setValueAt(temp.getreted(),i,6);
+             tl_history.setValueAt(temp.getfine(),i,7); 
+             tl_history.setValueAt(temp.getcopy(),i,3); 
          
          i++;
       }
@@ -1884,7 +1889,7 @@ public class Librarian extends javax.swing.JFrame {
         l_book.setEditable(true);
         if(book_loan!=null)
         {
-            if(obj.searchreqbook(book_loan)==false)
+            if(obj.searchreqbook(book_loan)==false && obj.searchbook(book_loan)==false)
             {
                 obj.reqBook(book_loan);
                 JOptionPane.showMessageDialog(null, "Added");
@@ -1892,7 +1897,14 @@ public class Librarian extends javax.swing.JFrame {
             }
             else
             {
+                if(obj.searchbook(book_loan))
+                {
+                    JOptionPane.showMessageDialog(null, "You already have a copy of this book. System does not allow two copies");
+                }
+                else
+                {
                 JOptionPane.showMessageDialog(null, "Book already requested");
+                }
                 jDialog2.setVisible(false);
             }
         }
@@ -1906,13 +1918,21 @@ public class Librarian extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String search=l_book.getText();
-        book_loan=obj.Search(search);
-        if(book_loan!=null)
+        book_loans=obj.Search(search);
+        if(book_loans.isEmpty()==false)
         {
             jDialog13.setVisible(true);
             DefaultComboBoxModel model = (DefaultComboBoxModel) jc_book.getModel();
             model.removeAllElements();
-            model.addElement(book_loan.getTitle()+" by "+book_loan.getAuthor()+"edition "+book_loan.getEdition());
+             ListIterator<Book> it=null;
+            it=book_loans.listIterator();
+            while(it.hasNext())
+            {
+                
+                Book temp=it.next();
+                model.addElement(temp.getTitle()+" by "+temp.getAuthor()+"edition "+temp.getEdition());
+                
+            }
 
         }
         else
@@ -1922,7 +1942,7 @@ public class Librarian extends javax.swing.JFrame {
             model.removeAllElements();
             model.addElement("Nothing Found");
             l_book.setEditable(true);
-            kButton5.setText("Close");        }
+            kButton11.setText("Close");        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void l_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_l_bookActionPerformed
@@ -1936,6 +1956,9 @@ public class Librarian extends javax.swing.JFrame {
     private void kButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton11ActionPerformed
         // TODO add your handling code here:
         String book=jc_book.getSelectedItem().toString();
+        int index=jc_book.getSelectedIndex();
+        if(book_loans.isEmpty()==false)
+        book_loan=book_loans.get(index);
         if(book.equals("Nothing Found"))
         {
 
@@ -2017,14 +2040,14 @@ public class Librarian extends javax.swing.JFrame {
     private void req_accActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_req_accActionPerformed
         // TODO add your handling code here:
         Book_User a=obj.lib.getfromreq(row);
-        if(a.getBook().isStatus()==1)
+        if(a.getBook().isStatus()!=-1)
         {    
             obj.check_out(a);
             JOptionPane.showMessageDialog(null, "Book Issued");
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Book already Issued to someone Please wait till return");
+            JOptionPane.showMessageDialog(null, "Book has no copies left Please wait till return");
         }
         refresh();
        

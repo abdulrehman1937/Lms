@@ -172,19 +172,22 @@ public class Library {
     {
         this.historyOfLoans.add(a);
     }
-    public Book Search(String Name)
+    public ArrayList<Book> Search(String Name)
     {
+        ArrayList<Book> temp=new ArrayList<>();
+        String name=Name.toLowerCase();
         Book a=new Book();
         ListIterator<Book>it=allbooks.listIterator();
         while(it.hasNext())
         {
             a=it.next();
-            if(a.getTitle().equals(Name) && a.isStatus()==1)
+            String searchwith=a.getTitle().toLowerCase();
+            if(searchwith.contains(name) ||searchwith.equals(name) && a.isStatus()!=-1)
             {
-                return a;
+                temp.add(a);
             }
         }
-        return null;
+        return temp;
     }
     public boolean Searchbyid(int id)
     {
@@ -233,12 +236,12 @@ public class Library {
         return booksret;
         
     }
-    public void setBookStatus(Book_User a,int status)
+    /*public void setBookStatus(Book_User a,int status)
     {
         int index=allbooks.indexOf(a.getBook());
         allbooks.get(index).setStatus(status);
         
-    }
+    }*/
     public boolean Searchbookret(String Username,Book obj)
     {
         ListIterator<Book_User> it=null;
@@ -332,5 +335,11 @@ public class Library {
     {
         return this.historyOfLoans;
     }
+    public void updateHistory(Book_loan objprev,Book_loan obj)
+    {
+        int index=this.historyOfLoans.indexOf(objprev);
+        this.historyOfLoans.set(index, obj);
+    }
+            
 }
 

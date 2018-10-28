@@ -27,7 +27,9 @@ public class Borrower extends javax.swing.JFrame {
      * Creates new form Borrower
      */
     int row,col;
+    int bk_id=-1;
     private Users_class obj;
+    private ArrayList<Book> book_loans;
     private Book book_loan;
     public Borrower() {
         
@@ -732,7 +734,7 @@ public class Borrower extends javax.swing.JFrame {
         l_book.setEditable(true);
         if(book_loan!=null)
         {
-            if(obj.searchreqbook(book_loan)==false)
+            if(obj.searchreqbook(book_loan)==false && obj.searchbook(book_loan)==false)
             {
         obj.reqBook(book_loan);
         JOptionPane.showMessageDialog(null, "Added");
@@ -740,7 +742,14 @@ public class Borrower extends javax.swing.JFrame {
         }
             else
             {
+                if(obj.searchbook(book_loan))
+                {
+                    JOptionPane.showMessageDialog(null, "You already have a copy of this book. System does not allow two copies");
+                }
+                else
+                {
                 JOptionPane.showMessageDialog(null, "Book already requested");
+                }
                 jDialog2.setVisible(false);
             }
         }
@@ -797,6 +806,9 @@ public class Borrower extends javax.swing.JFrame {
     private void kButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton5ActionPerformed
         // TODO add your handling code here:
         String book=jc_book.getSelectedItem().toString();
+        int index=jc_book.getSelectedIndex();
+        if(book_loans.isEmpty()==false)
+        book_loan=book_loans.get(index);
         if(book.equals("Nothing Found"))
         {
             
@@ -819,13 +831,21 @@ public class Borrower extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String search=l_book.getText();
-        book_loan=obj.Search(search);
-        if(book_loan!=null)
+        book_loans=obj.Search(search);
+        if(book_loans.isEmpty())
         {
             jDialog6.setVisible(true);
             DefaultComboBoxModel model = (DefaultComboBoxModel) jc_book.getModel();
             model.removeAllElements();
-            model.addElement(book_loan.getTitle()+" by "+book_loan.getAuthor()+"edition "+book_loan.getEdition());
+            ListIterator<Book> it=null;
+            it=book_loans.listIterator();
+            while(it.hasNext())
+            {
+                Book temp=it.next();
+                model.addElement(temp.getTitle()+" by "+temp.getAuthor()+"edition "+temp.getEdition());
+                
+            }
+            
             
         }
         else

@@ -28,6 +28,7 @@ public class Clerk extends javax.swing.JFrame {
     private int row=-1,col=-1;
     private Users_class obj;
     private Book book_loan;
+    private ArrayList<Book> book_loans;
     private String username="";
     public Clerk() {
         initComponents();
@@ -158,6 +159,7 @@ public class Clerk extends javax.swing.JFrame {
          tl_reqbooks.setValueAt(Integer.toString(i+1),i,0);
              tl_reqbooks.setValueAt(book,i,2);
          tl_reqbooks.setValueAt(temp.getUser().username,i,1);
+         
          
          
          
@@ -1389,14 +1391,14 @@ public class Clerk extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Book_User a=obj.lib.getfromreq(row);
-        if(a.getBook().isStatus()==1)
+        if(a.getBook().isStatus()!=-1)
         {    
             obj.check_out(a);
             JOptionPane.showMessageDialog(null, "Book Issued");
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Book already Issued to someone Please wait till return");
+            JOptionPane.showMessageDialog(null, "Book has no copies left Please wait till return");
         }
         
         refresh();
@@ -1457,7 +1459,7 @@ public class Clerk extends javax.swing.JFrame {
         l_book.setEditable(true);
         if(book_loan!=null)
         {
-            if(obj.searchreqbook(book_loan)==false)
+            if(obj.searchreqbook(book_loan)==false && obj.searchbook(book_loan)==false)
             {
                 obj.reqBook(book_loan);
                 JOptionPane.showMessageDialog(null, "Added");
@@ -1465,7 +1467,14 @@ public class Clerk extends javax.swing.JFrame {
             }
             else
             {
+                if(obj.searchbook(book_loan))
+                {
+                    JOptionPane.showMessageDialog(null, "You already have a copy of this book. System does not allow two copies");
+                }
+                else
+                {
                 JOptionPane.showMessageDialog(null, "Book already requested");
+                }
                 jDialog2.setVisible(false);
             }
         }
@@ -1487,6 +1496,9 @@ public class Clerk extends javax.swing.JFrame {
     private void kButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton7ActionPerformed
         // TODO add your handling code here:
         String book=jc_book.getSelectedItem().toString();
+        int index=jc_book.getSelectedIndex();
+        if(book_loans.isEmpty()==false)
+        book_loan=book_loans.get(index);
         if(book.equals("Nothing Found"))
         {
 
@@ -1527,13 +1539,20 @@ public class Clerk extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String search=l_book.getText();
-        book_loan=obj.Search(search);
-        if(book_loan!=null)
+         book_loans=obj.Search(search);
+        if(book_loans.isEmpty())
         {
             jDialog10.setVisible(true);
             DefaultComboBoxModel model = (DefaultComboBoxModel) jc_book.getModel();
             model.removeAllElements();
-            model.addElement(book_loan.getTitle()+" by "+book_loan.getAuthor()+"edition "+book_loan.getEdition());
+            ListIterator<Book> it=null;
+            it=book_loans.listIterator();
+            while(it.hasNext())
+            {
+                Book temp=it.next();
+                model.addElement(temp.getTitle()+" by "+temp.getAuthor()+"edition "+temp.getEdition());
+                
+            }
 
         }
         else
@@ -1543,7 +1562,7 @@ public class Clerk extends javax.swing.JFrame {
             model.removeAllElements();
             model.addElement("Nothing Found");
             l_book.setEditable(true);
-            kButton5.setText("Close");        }
+            kButton7.setText("Close");        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tl_newusersMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tl_newusersMouseReleased

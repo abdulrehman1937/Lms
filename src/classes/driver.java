@@ -126,11 +126,26 @@ public final class driver {
         String Edition = rs.getString("bk_edition");
         String Author=rs.getString("bk_author");
         String Subject=rs.getString("bk_subject");
-        int Status = rs.getInt("bk_status");
-        Book temp=new Book(id,Title,Author,Subject,Edition,Status);
+        int noofcopies = rs.getInt("bk_copies");
+        ArrayList<Integer>noof=getstatus(id);
+        Book temp=new Book(id,Title,Author,Subject,Edition,noofcopies,noof);
         allbooks.add(temp);
       }
         return allbooks;
+    }
+    public ArrayList<Integer> getstatus(int id) throws SQLException
+    {
+        dbconection db=new dbconection();
+       String query="Select * from book_copies where bk_id="+"'"+id+"'"+" order by bk_cpno asc";
+        ArrayList<Integer> noof=new ArrayList<>();   
+       int i=0;
+        ResultSet rs1=db.execute(query);
+         while (rs1.next())
+      {
+          noof.add(i, rs1.getInt("bk_status"));
+          i++;
+      }
+         return noof;
     }
     public  ArrayList<Users_class> getAllusers() throws SQLException
     {
@@ -212,6 +227,7 @@ public ArrayList<Book_loan> books_loan(ArrayList<Users_class> allusers,ArrayList
                     
         String username=rs1.getString("ln_username");
         int id=rs1.getInt("bk_id");
+        int bk_copyno=rs1.getInt("bk_cpno");
         Date issue=rs1.getDate("issue_date");
         Date retdate=rs1.getDate("retdate");
         if(rs1.getInt("Returned")==0)
@@ -219,7 +235,7 @@ public ArrayList<Book_loan> books_loan(ArrayList<Users_class> allusers,ArrayList
             Book a=getBook(id,allbooks);
             Users_class b=getUser(username,allusers);
             
-            Book_loan temploan=new Book_loan(b,a,issue,retdate,null,0);
+            Book_loan temploan=new Book_loan(b,a,issue,retdate,null,0,bk_copyno);
             b.addloanedbook(temploan);
             books.add(temploan);
         }
@@ -229,7 +245,7 @@ public ArrayList<Book_loan> books_loan(ArrayList<Users_class> allusers,ArrayList
             int fine=rs1.getInt("fine");
             Book a=getBook(id,allbooks);
             Users_class b=getUser(username,allusers);
-            Book_loan temploan=new Book_loan(b,a,issue,retdate,returneddate,fine);
+            Book_loan temploan=new Book_loan(b,a,issue,retdate,returneddate,fine,bk_copyno);
             books.add(temploan);
          }
         
