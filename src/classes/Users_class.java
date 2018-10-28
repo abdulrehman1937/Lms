@@ -21,7 +21,6 @@ public class Users_class {
     //private String Password;
     public String PhoneNumber;
     public ArrayList<Book_loan> Books;
-    
     public Users_class() {
         
         username=null;
@@ -30,10 +29,10 @@ public class Users_class {
         Books = null;
       //  Password=null;
         PhoneNumber=null;
-        
     }
     public Users_class(String Name,String Username,String Email,String PhoneNumber,ArrayList<Book_loan> Books, login a,Library lib)
     {
+        
         this.lib=lib;
         this.username=Username;
         this.Name=Name;
@@ -184,6 +183,18 @@ public class Users_class {
       public void deluser(String Username)
       {
           
+      }
+      public int computefine()
+      {
+          int fine=0;
+          ListIterator<Book_loan> it;
+          it=Books.listIterator();
+          while(it.hasNext())
+          {
+              Book_loan temp=it.next();
+              fine+=temp.myfine();
+          }
+          return fine;
       }
    
          

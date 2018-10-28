@@ -328,5 +328,9 @@ public class Library {
         temp.setSubject(Subject);
         temp.setTitle(Title);
     }
+    public ArrayList<Book_loan> giveHistory()
+    {
+        return this.historyOfLoans;
+    }
 }
 

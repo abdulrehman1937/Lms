@@ -43,12 +43,13 @@ public class Librarian extends javax.swing.JFrame {
         t_username.setText(a.username);
         t_email.setText(a.Email);
         t_pno.setText(a.PhoneNumber);
+        t_fine.setText(Integer.toString(a.computefine()));
         //Books.get(0).getbook();
         initIssuebook();
         initBooksreq();
         initBooksret();
         initnewusers();
-        
+        initHistorybook();
         
         this.setVisible(true);
     }
@@ -56,6 +57,8 @@ public class Librarian extends javax.swing.JFrame {
     {
         DefaultTableModel model = (DefaultTableModel) tl_newusers.getModel();
         model.setRowCount(0);
+        model.setColumnCount(0);
+        
         
          ArrayList<register_class> newusers=obj.getnewusers();
          
@@ -63,7 +66,12 @@ public class Librarian extends javax.swing.JFrame {
         {
             int rows=newusers.size();
          model.setRowCount(rows);
-         model.setColumnCount(6);
+         model.addColumn("Sr No.");
+         model.addColumn("User Name");
+         model.addColumn("Password");
+         model.addColumn("Name");
+         model.addColumn("Email");
+         model.addColumn("Phone No.");
          tl_newusers.setModel(model);
          ListIterator<register_class> iter=null;
          iter=newusers.listIterator();
@@ -86,6 +94,8 @@ public class Librarian extends javax.swing.JFrame {
     {
         DefaultTableModel model = (DefaultTableModel) tl_books.getModel();
         model.setRowCount(0);
+        model.setColumnCount(0);
+        
         DefaultComboBoxModel jcmodel = (DefaultComboBoxModel) jc_books.getModel();
             jcmodel.removeAllElements();
          ArrayList<Book_loan> Books=obj.getbooks();
@@ -93,7 +103,12 @@ public class Librarian extends javax.swing.JFrame {
         {
             int rows=Books.size();
          model.setRowCount(rows);
-         model.setColumnCount(4);
+        model.addColumn("Sr No.");
+         model.addColumn("Book");
+         model.addColumn("Issue Data");
+         model.addColumn("Expiry Date");
+         model.addColumn("Fine");
+
          tl_books.setModel(model);
          ListIterator<Book_loan> iter=null;
          iter=Books.listIterator();
@@ -106,6 +121,45 @@ public class Librarian extends javax.swing.JFrame {
              tl_books.setValueAt(book,i,1);
          tl_books.setValueAt(temp.getissue(),i,2);
          tl_books.setValueAt(temp.getret(),i,3);
+         tl_books.setValueAt(temp.myfine(),i,4);
+         i++;
+      }
+        }
+    }
+    public void initHistorybook()
+    {
+        DefaultTableModel model = (DefaultTableModel) tl_history.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(0);
+        
+        
+         ArrayList<Book_loan> Books=Users_class.lib.giveHistory();
+        if(Books!=null)
+        {
+            int rows=Books.size();
+         model.setRowCount(rows);
+        model.addColumn("Sr No.");
+         model.addColumn("Book");
+          model.addColumn("User Name");
+         model.addColumn("Issue Data");
+         model.addColumn("Expiry Date");
+         model.addColumn("Returned Data");
+         model.addColumn("Fine");
+
+         tl_history.setModel(model);
+         ListIterator<Book_loan> iter=null;
+         iter=Books.listIterator();
+          int i=0;
+         while (iter.hasNext()) {
+             Book_loan temp=iter.next();
+             String book=temp.getbook().getTitle()+" by "+temp.getbook().getAuthor()+" edition "+temp.getbook().getEdition();
+             tl_history.setValueAt(Integer.toString(i+1),i,0);
+             tl_history.setValueAt(book,i,1);
+             tl_history.setValueAt(temp.getuser().username,i,2);
+         tl_history.setValueAt(temp.getissue(),i,3);
+         tl_history.setValueAt(temp.getret(),i,4);
+         tl_history.setValueAt(temp.getreted(),i,5);
+             tl_history.setValueAt(temp.getfine(),i,6); 
          
          i++;
       }
@@ -116,6 +170,7 @@ public class Librarian extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) tl_reqbooks.getModel();
         model.setRowCount(0);
+        model.setColumnCount(0);
         
         ArrayList<Book_User> Booksreq=obj.lib.getreq();
         
@@ -123,7 +178,9 @@ public class Librarian extends javax.swing.JFrame {
         {
          int rows=Booksreq.size();
          model.setRowCount(rows);
-         model.setColumnCount(3);
+         model.addColumn("Sr No.");
+         model.addColumn("User Name");
+         model.addColumn("Book");
          tl_reqbooks.setModel(model);
          ListIterator<Book_User> iter=null;
          iter=Booksreq.listIterator();
@@ -145,13 +202,17 @@ public class Librarian extends javax.swing.JFrame {
     public void initBooksret()
     {
         DefaultTableModel model = (DefaultTableModel) tl_retbooks.getModel();
-        model.setRowCount(0);
+       model.setRowCount(0);
+        model.setColumnCount(0);
+        
         ArrayList<Book_User> Booksret=obj.lib.getret();
         if(Booksret!=null)
         {
             int rows=Booksret.size();
          model.setRowCount(rows);
-         model.setColumnCount(3);
+        model.addColumn("Sr No.");
+         model.addColumn("User Name");
+         model.addColumn("Book");
          tl_retbooks.setModel(model);
          ListIterator<Book_User> iter=null;
          iter=Booksret.listIterator();
@@ -174,6 +235,7 @@ public class Librarian extends javax.swing.JFrame {
         initBooksreq();
         initBooksret();
         initnewusers();
+        initHistorybook();
     }
 
     /**
@@ -293,6 +355,12 @@ public class Librarian extends javax.swing.JFrame {
         kButton12 = new keeptoo.KButton();
         jLabel14 = new javax.swing.JLabel();
         jdel_username = new javax.swing.JTextField();
+        jPopupMenu5 = new javax.swing.JPopupMenu();
+        j_return = new javax.swing.JMenuItem();
+        j_extend = new javax.swing.JMenuItem();
+        jDialog16 = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tl_history = new javax.swing.JTable();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         t_name = new javax.swing.JTextField();
@@ -303,6 +371,8 @@ public class Librarian extends javax.swing.JFrame {
         t_pno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         t_username = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        t_fine = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -319,6 +389,7 @@ public class Librarian extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
 
         jDialog1.setTitle("Password Change");
         jDialog1.setSize(new java.awt.Dimension(500, 500));
@@ -617,7 +688,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel22.setText("Book Subject");
         kGradientPanel8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, 30));
 
-        bk_newtitle.setBackground(new java.awt.Color(255, 255, 255));
         bk_newtitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bk_newtitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         bk_newtitle.setOpaque(false);
@@ -628,7 +698,6 @@ public class Librarian extends javax.swing.JFrame {
         });
         kGradientPanel8.add(bk_newtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 39));
 
-        bk_newauthor.setBackground(new java.awt.Color(255, 255, 255));
         bk_newauthor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bk_newauthor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         bk_newauthor.setOpaque(false);
@@ -639,7 +708,6 @@ public class Librarian extends javax.swing.JFrame {
         });
         kGradientPanel8.add(bk_newauthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 39));
 
-        bk_newsub.setBackground(new java.awt.Color(255, 255, 255));
         bk_newsub.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bk_newsub.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         bk_newsub.setOpaque(false);
@@ -655,7 +723,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel26.setText("Book Edition");
         kGradientPanel8.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, 30));
 
-        bk_newed.setBackground(new java.awt.Color(255, 255, 255));
         bk_newed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bk_newed.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         bk_newed.setOpaque(false);
@@ -671,7 +738,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel31.setText("Book Id");
         kGradientPanel8.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 120, 30));
 
-        bk_newid.setBackground(new java.awt.Color(255, 255, 255));
         bk_newid.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bk_newid.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         bk_newid.setOpaque(false);
@@ -727,7 +793,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel24.setText("jLabel10");
         kGradientPanel9.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 90, 50));
 
-        jTextField15.setBackground(new java.awt.Color(255, 255, 255));
         jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField15.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         jTextField15.setOpaque(false);
@@ -780,7 +845,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel25.setText("Select Book");
         kGradientPanel10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
 
-        t_editbook.setBackground(new java.awt.Color(255, 255, 255));
         t_editbook.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_editbook.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_editbook.setOpaque(false);
@@ -843,7 +907,6 @@ public class Librarian extends javax.swing.JFrame {
         jLabel29.setText("Book Edition");
         kGradientPanel11.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, 30));
 
-        t_bktitle.setBackground(new java.awt.Color(255, 255, 255));
         t_bktitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_bktitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_bktitle.setOpaque(false);
@@ -854,7 +917,6 @@ public class Librarian extends javax.swing.JFrame {
         });
         kGradientPanel11.add(t_bktitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 39));
 
-        t_bkauthor.setBackground(new java.awt.Color(255, 255, 255));
         t_bkauthor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_bkauthor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_bkauthor.setOpaque(false);
@@ -865,7 +927,6 @@ public class Librarian extends javax.swing.JFrame {
         });
         kGradientPanel11.add(t_bkauthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 39));
 
-        t_bked.setBackground(new java.awt.Color(255, 255, 255));
         t_bked.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_bked.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_bked.setOpaque(false);
@@ -876,7 +937,6 @@ public class Librarian extends javax.swing.JFrame {
         });
         kGradientPanel11.add(t_bked, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 210, 39));
 
-        t_bksub.setBackground(new java.awt.Color(255, 255, 255));
         t_bksub.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_bksub.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_bksub.setOpaque(false);
@@ -1308,6 +1368,51 @@ public class Librarian extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        j_return.setText("jMenuItem13");
+        j_return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j_returnActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(j_return);
+
+        j_extend.setText("jMenuItem17");
+        jPopupMenu5.add(j_extend);
+
+        tl_history.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tl_history);
+
+        javax.swing.GroupLayout jDialog16Layout = new javax.swing.GroupLayout(jDialog16.getContentPane());
+        jDialog16.getContentPane().setLayout(jDialog16Layout);
+        jDialog16Layout.setHorizontalGroup(
+            jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog16Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jDialog16Layout.setVerticalGroup(
+            jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog16Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 204));
@@ -1380,6 +1485,22 @@ public class Librarian extends javax.swing.JFrame {
             }
         });
         kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 210, 39));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setText("Fine");
+        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 150, 80));
+
+        t_fine.setEditable(false);
+        t_fine.setBackground(new java.awt.Color(255, 255, 255));
+        t_fine.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_fine.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        t_fine.setOpaque(false);
+        t_fine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_fineActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(t_fine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 210, 39));
 
         jMenu1.setText("File");
 
@@ -1491,6 +1612,14 @@ public class Librarian extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem16);
 
+        jMenuItem13.setText("History Of Loans");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -1515,6 +1644,11 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        if(obj.computefine()>500)
+        {
+            JOptionPane.showMessageDialog(null, "Can not issue new book First clear your fine");
+        }
+        else
         jDialog2.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -1819,12 +1953,16 @@ public class Librarian extends javax.swing.JFrame {
     private void book_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_returnActionPerformed
         // TODO add your handling code here:
         int book=jc_books.getSelectedIndex();
-
+        String a=tl_books.getValueAt(book, 4).toString();
+        int aa=Integer.parseInt(a);
         if(obj.searchretbook(book)==false)
         {
             Book temp=obj.Books.get(book).getbook();
             obj.retBook(temp);
-            JOptionPane.showMessageDialog(null, "Return Requested");
+            if(aa==0)
+        JOptionPane.showMessageDialog(null, "Return Requested");
+         else
+              JOptionPane.showMessageDialog(null, "Fine paid and Return Requested");
             jDialog3.setVisible(false);
         }
         else
@@ -1836,6 +1974,26 @@ public class Librarian extends javax.swing.JFrame {
 
     private void tl_booksMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tl_booksMouseReleased
         // TODO add your handling code here:
+        if(evt.isPopupTrigger())
+        {
+            
+            jPopupMenu5.show(tl_books, evt.getX(), evt.getY());
+             row = tl_books.rowAtPoint(evt.getPoint());
+             col = tl_books.columnAtPoint(evt.getPoint());
+            String a=tl_books.getValueAt(row, 4).toString();
+            int aa=Integer.parseInt(a);
+            if(aa==0)
+            {
+                j_return.setText("Return Book");
+                j_extend.setText("Extend Date");
+            }
+            else
+            {
+                j_return.setText("Return Book And Pay fine");
+                j_extend.setText("Extend Date");
+            }
+        
+        }
 
     }//GEN-LAST:event_tl_booksMouseReleased
 
@@ -2024,6 +2182,37 @@ public class Librarian extends javax.swing.JFrame {
         jDialog18.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void j_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_returnActionPerformed
+        // TODO add your handling code here:
+        String a=tl_books.getValueAt(row, 4).toString();
+        int aa=Integer.parseInt(a);
+        if(obj.searchretbook(row)==false)
+        {
+        Book temp=obj.Books.get(row).getbook();
+         obj.retBook(temp);
+         if(aa==0)
+        JOptionPane.showMessageDialog(null, "Return Requested");
+         else
+              JOptionPane.showMessageDialog(null, "Fine paid and Return Requested");
+        jDialog3.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Already Return Requested"); 
+        }
+        refresh();
+    }//GEN-LAST:event_j_returnActionPerformed
+
+    private void t_fineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_fineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_fineActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        refresh();
+        jDialog16.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2081,6 +2270,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog13;
     private javax.swing.JDialog jDialog14;
     private javax.swing.JDialog jDialog15;
+    private javax.swing.JDialog jDialog16;
     private javax.swing.JDialog jDialog18;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
@@ -2118,6 +2308,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -2125,6 +2316,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
@@ -2140,11 +2332,15 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
+    private javax.swing.JPopupMenu jPopupMenu5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField15;
+    private javax.swing.JMenuItem j_extend;
+    private javax.swing.JMenuItem j_return;
     private javax.swing.JComboBox<String> jc_book;
     private javax.swing.JComboBox<String> jc_books;
     private javax.swing.JTextField jdel_username;
@@ -2187,10 +2383,12 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JTextField t_bktitle;
     private javax.swing.JTextField t_editbook;
     private javax.swing.JTextField t_email;
+    private javax.swing.JTextField t_fine;
     private javax.swing.JTextField t_name;
     private javax.swing.JTextField t_pno;
     private javax.swing.JTextField t_username;
     private javax.swing.JTable tl_books;
+    private javax.swing.JTable tl_history;
     private javax.swing.JTable tl_newusers;
     private javax.swing.JTable tl_reqbooks;
     private javax.swing.JTable tl_retbooks;

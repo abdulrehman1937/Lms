@@ -26,7 +26,7 @@ public class Borrower extends javax.swing.JFrame {
     /**
      * Creates new form Borrower
      */
-    
+    int row,col;
     private Users_class obj;
     private Book book_loan;
     public Borrower() {
@@ -42,6 +42,7 @@ public class Borrower extends javax.swing.JFrame {
         t_username.setText(a.username);
         t_email.setText(a.Email);
         t_pno.setText(a.PhoneNumber);
+        t_fine.setText(Integer.toString(a.computefine()));
         //Books.get(0).getbook();
          inittable();
         this.setVisible(true);
@@ -54,11 +55,17 @@ public class Borrower extends javax.swing.JFrame {
             jcmodel.removeAllElements();
             
         model.setRowCount(0);
+        model.setColumnCount(0);
+        
         if(Books!=null)
         {
                int rows=Books.size();
          model.setRowCount(rows);
-         model.setColumnCount(4);
+         model.addColumn("Sr No.");
+         model.addColumn("Book");
+         model.addColumn("Issue Data");
+         model.addColumn("Expiry Date");
+         model.addColumn("Fine");
          tl_books.setModel(model);
          ListIterator<Book_loan> iter=null;
          iter=Books.listIterator();
@@ -71,7 +78,7 @@ public class Borrower extends javax.swing.JFrame {
              tl_books.setValueAt(book,i,1);
          tl_books.setValueAt(temp.getissue(),i,2);
          tl_books.setValueAt(temp.getret(),i,3);
-         
+         tl_books.setValueAt(temp.myfine(), i, 4);
          i++;
       }
         }
@@ -116,14 +123,16 @@ public class Borrower extends javax.swing.JFrame {
         kButton4 = new keeptoo.KButton();
         jLabel12 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jDialog5 = new javax.swing.JDialog();
-        kGradientPanel6 = new keeptoo.KGradientPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tl_books = new javax.swing.JTable();
         jDialog6 = new javax.swing.JDialog();
         kGradientPanel7 = new keeptoo.KGradientPanel();
         jc_book = new javax.swing.JComboBox<>();
         kButton5 = new keeptoo.KButton();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        j_extend = new javax.swing.JMenuItem();
+        j_return = new javax.swing.JMenuItem();
+        jDialog5 = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tl_books = new javax.swing.JTable();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         t_name = new javax.swing.JTextField();
@@ -134,6 +143,9 @@ public class Borrower extends javax.swing.JFrame {
         t_pno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         t_username = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        t_fine = new javax.swing.JTextField();
+        change_password1 = new keeptoo.KButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -371,67 +383,6 @@ public class Borrower extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jDialog5.setSize(new java.awt.Dimension(500, 500));
-
-        kGradientPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        kGradientPanel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        kGradientPanel6.setkEndColor(new java.awt.Color(204, 0, 204));
-        kGradientPanel6.setkStartColor(new java.awt.Color(0, 102, 102));
-        kGradientPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tl_books.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tl_books.setOpaque(false);
-        jScrollPane1.setViewportView(tl_books);
-
-        kGradientPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
-
-        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
-        jDialog5.getContentPane().setLayout(jDialog5Layout);
-        jDialog5Layout.setHorizontalGroup(
-            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog5Layout.createSequentialGroup()
-                .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jDialog5Layout.setVerticalGroup(
-            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jDialog6.setSize(new java.awt.Dimension(500, 500));
 
         kGradientPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -477,6 +428,54 @@ public class Borrower extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPopupMenu1.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        j_extend.setText("jMenuItem8");
+        jPopupMenu1.add(j_extend);
+
+        j_return.setText("jMenuItem7");
+        j_return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j_returnActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(j_return);
+
+        jDialog5.setSize(new java.awt.Dimension(500, 500));
+
+        tl_books.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tl_books.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tl_booksMouseReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tl_books);
+
+        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
+        jDialog5.getContentPane().setLayout(jDialog5Layout);
+        jDialog5Layout.setHorizontalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog5Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 59, Short.MAX_VALUE))
+        );
+        jDialog5Layout.setVerticalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog5Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 204));
@@ -516,7 +515,7 @@ public class Borrower extends javax.swing.JFrame {
                 t_emailActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 210, 39));
+        kGradientPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 210, 39));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel4.setText("Phone No.");
@@ -549,6 +548,35 @@ public class Borrower extends javax.swing.JFrame {
             }
         });
         kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 210, 39));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setText("Fine");
+        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 150, 80));
+
+        t_fine.setEditable(false);
+        t_fine.setBackground(new java.awt.Color(255, 255, 255));
+        t_fine.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_fine.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        t_fine.setOpaque(false);
+        t_fine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_fineActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(t_fine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 210, 39));
+
+        change_password1.setText("See Details");
+        change_password1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        change_password1.setkBorderRadius(40);
+        change_password1.setkEndColor(new java.awt.Color(102, 102, 255));
+        change_password1.setkHoverStartColor(new java.awt.Color(51, 51, 51));
+        change_password1.setOpaque(false);
+        change_password1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                change_password1ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
         jMenu1.setText("File");
 
@@ -636,7 +664,13 @@ public class Borrower extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        if(obj.computefine()>500)
+        {
+            JOptionPane.showMessageDialog(null, "Can not issue new book First clear your fine");
+        }
+        else
         jDialog2.setVisible(true);
+        
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -721,12 +755,19 @@ public class Borrower extends javax.swing.JFrame {
     private void book_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_returnActionPerformed
         // TODO add your handling code here:
         int book=jc_books.getSelectedIndex();
+        String a=tl_books.getValueAt(book, 4).toString();
+        int aa=Integer.parseInt(a);
+        
         
         if(obj.searchretbook(book)==false)
         {
         Book temp=obj.Books.get(book).getbook();
          obj.retBook(temp);
+         
+        if(aa==0)
         JOptionPane.showMessageDialog(null, "Return Requested");
+         else
+              JOptionPane.showMessageDialog(null, "Fine paid and Return Requested");
         jDialog3.setVisible(false);
         }
         else
@@ -798,6 +839,60 @@ public class Borrower extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void t_fineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_fineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_fineActionPerformed
+
+    private void change_password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_password1ActionPerformed
+        // TODO add your handling code here:
+        jDialog5.setVisible(true);
+    }//GEN-LAST:event_change_password1ActionPerformed
+
+    private void j_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_returnActionPerformed
+        // TODO add your handling code here:
+        String a=tl_books.getValueAt(row, 4).toString();
+        int aa=Integer.parseInt(a);
+        if(obj.searchretbook(row)==false)
+        {
+        Book temp=obj.Books.get(row).getbook();
+         obj.retBook(temp);
+         if(aa==0)
+        JOptionPane.showMessageDialog(null, "Return Requested");
+         else
+              JOptionPane.showMessageDialog(null, "Fine paid and Return Requested");
+        jDialog3.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Already Return Requested"); 
+        }
+        refresh();
+    }//GEN-LAST:event_j_returnActionPerformed
+
+    private void tl_booksMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tl_booksMouseReleased
+        // TODO add your handling code here:
+        if(evt.isPopupTrigger())
+        {
+
+            jPopupMenu1.show(tl_books, evt.getX(), evt.getY());
+            row = tl_books.rowAtPoint(evt.getPoint());
+            col = tl_books.columnAtPoint(evt.getPoint());
+            String a=tl_books.getValueAt(row, 4).toString();
+            int aa=Integer.parseInt(a);
+            if(aa==0)
+            {
+                j_return.setText("Return Book");
+                j_extend.setText("Extend Date");
+            }
+            else
+            {
+                j_return.setText("Return Book And Pay fine");
+                j_extend.setText("Extend Date");
+            }
+
+        }
+    }//GEN-LAST:event_tl_booksMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -834,6 +929,7 @@ public class Borrower extends javax.swing.JFrame {
     private keeptoo.KButton book_return;
     private javax.swing.JPasswordField c_password;
     private keeptoo.KButton change_password;
+    private keeptoo.KButton change_password1;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDialog jDialog1;
@@ -852,6 +948,7 @@ public class Borrower extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -860,7 +957,10 @@ public class Borrower extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem j_extend;
+    private javax.swing.JMenuItem j_return;
     private javax.swing.JComboBox<String> jc_book;
     private javax.swing.JComboBox<String> jc_books;
     private keeptoo.KButton kButton2;
@@ -871,13 +971,13 @@ public class Borrower extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel3;
     private keeptoo.KGradientPanel kGradientPanel4;
     private keeptoo.KGradientPanel kGradientPanel5;
-    private keeptoo.KGradientPanel kGradientPanel6;
     private keeptoo.KGradientPanel kGradientPanel7;
     private javax.swing.JTextField l_book;
     private javax.swing.JLabel l_label123;
     private javax.swing.JPasswordField n_password;
     private javax.swing.JPasswordField nc_password;
     private javax.swing.JTextField t_email;
+    private javax.swing.JTextField t_fine;
     private javax.swing.JTextField t_name;
     private javax.swing.JTextField t_pno;
     private javax.swing.JTextField t_username;

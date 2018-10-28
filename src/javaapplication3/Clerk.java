@@ -43,6 +43,7 @@ public class Clerk extends javax.swing.JFrame {
         t_username.setText(a.username);
         t_email.setText(a.Email);
         t_pno.setText(a.PhoneNumber);
+        t_fine.setText(Integer.toString(a.computefine()));
         //Books.get(0).getbook();
         initIssuebook();
         initBooksreq();
@@ -57,6 +58,8 @@ public class Clerk extends javax.swing.JFrame {
     {
         DefaultTableModel model = (DefaultTableModel) tl_books.getModel();
         model.setRowCount(0);
+        model.setColumnCount(0);
+        
         DefaultComboBoxModel jcmodel = (DefaultComboBoxModel) jc_books.getModel();
             jcmodel.removeAllElements();
          ArrayList<Book_loan> Books=obj.getbooks();
@@ -64,7 +67,11 @@ public class Clerk extends javax.swing.JFrame {
         {
             int rows=Books.size();
          model.setRowCount(rows);
-         model.setColumnCount(4);
+         model.addColumn("Sr No.");
+         model.addColumn("Book");
+         model.addColumn("Issue Data");
+         model.addColumn("Expiry Date");
+         model.addColumn("Fine");
          tl_books.setModel(model);
          ListIterator<Book_loan> iter=null;
          iter=Books.listIterator();
@@ -77,7 +84,7 @@ public class Clerk extends javax.swing.JFrame {
              tl_books.setValueAt(book,i,1);
          tl_books.setValueAt(temp.getissue(),i,2);
          tl_books.setValueAt(temp.getret(),i,3);
-         
+         tl_books.setValueAt(temp.myfine(),i,4);
          i++;
       }
         }
@@ -85,7 +92,9 @@ public class Clerk extends javax.swing.JFrame {
      public void initnewusers()
     {
         DefaultTableModel model = (DefaultTableModel) tl_newusers.getModel();
-        model.setRowCount(0);
+       model.setRowCount(0);
+        model.setColumnCount(0);
+        
         
          ArrayList<register_class> newusers=obj.getnewusers();
          
@@ -93,7 +102,12 @@ public class Clerk extends javax.swing.JFrame {
         {
             int rows=newusers.size();
          model.setRowCount(rows);
-         model.setColumnCount(6);
+         model.addColumn("Sr No.");
+         model.addColumn("User Name");
+         model.addColumn("Password");
+         model.addColumn("Name");
+         model.addColumn("Email");
+         model.addColumn("Phone No.");
          tl_newusers.setModel(model);
          ListIterator<register_class> iter=null;
          iter=newusers.listIterator();
@@ -116,7 +130,9 @@ public class Clerk extends javax.swing.JFrame {
     {
         
         DefaultTableModel model = (DefaultTableModel) tl_reqbooks.getModel();
-        model.setRowCount(0);
+       model.setRowCount(0);
+        model.setColumnCount(0);
+        
         
         ArrayList<Book_User> Booksreq=obj.lib.getreq();
         
@@ -124,7 +140,12 @@ public class Clerk extends javax.swing.JFrame {
         {
          int rows=Booksreq.size();
          model.setRowCount(rows);
-         model.setColumnCount(3);
+          model.addColumn("Sr No.");
+         model.addColumn("User Name");
+         model.addColumn("Book");
+         
+         
+         
          tl_reqbooks.setModel(model);
          ListIterator<Book_User> iter=null;
          iter=Booksreq.listIterator();
@@ -139,6 +160,7 @@ public class Clerk extends javax.swing.JFrame {
          tl_reqbooks.setValueAt(temp.getUser().username,i,1);
          
          
+         
          i++;
       }
         }
@@ -147,12 +169,16 @@ public class Clerk extends javax.swing.JFrame {
     {
         DefaultTableModel model = (DefaultTableModel) tl_retbooks.getModel();
         model.setRowCount(0);
+        model.setColumnCount(0);
+        
         ArrayList<Book_User> Booksret=obj.lib.getret();
         if(Booksret!=null)
         {
             int rows=Booksret.size();
          model.setRowCount(rows);
-         model.setColumnCount(3);
+          model.addColumn("Sr No.");
+         model.addColumn("User Name");
+         model.addColumn("Book");
          tl_retbooks.setModel(model);
          ListIterator<Book_User> iter=null;
          iter=Booksret.listIterator();
@@ -258,6 +284,9 @@ public class Clerk extends javax.swing.JFrame {
         kButton8 = new keeptoo.KButton();
         jLabel14 = new javax.swing.JLabel();
         jdel_username = new javax.swing.JTextField();
+        jPopupMenu5 = new javax.swing.JPopupMenu();
+        j_return = new javax.swing.JMenuItem();
+        j_extend = new javax.swing.JMenuItem();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         t_name = new javax.swing.JTextField();
@@ -268,6 +297,8 @@ public class Clerk extends javax.swing.JFrame {
         t_pno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         t_username = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        t_fine = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -950,6 +981,17 @@ public class Clerk extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        j_return.setText("jMenuItem13");
+        j_return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j_returnActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(j_return);
+
+        j_extend.setText("jMenuItem14");
+        jPopupMenu5.add(j_extend);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 255, 204));
@@ -1022,6 +1064,22 @@ public class Clerk extends javax.swing.JFrame {
             }
         });
         kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 210, 39));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setText("Fine");
+        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 150, 80));
+
+        t_fine.setEditable(false);
+        t_fine.setBackground(new java.awt.Color(255, 255, 255));
+        t_fine.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_fine.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        t_fine.setOpaque(false);
+        t_fine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_fineActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(t_fine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 210, 39));
 
         jMenu1.setText("File");
 
@@ -1149,6 +1207,11 @@ public class Clerk extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        if(obj.computefine()>500)
+        {
+            JOptionPane.showMessageDialog(null, "Can not issue new book First clear your fine");
+        }
+        else
         jDialog2.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -1231,6 +1294,26 @@ public class Clerk extends javax.swing.JFrame {
 
     private void tl_booksMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tl_booksMouseReleased
         // TODO add your handling code here:
+        if(evt.isPopupTrigger())
+        {
+            
+            jPopupMenu5.show(tl_books, evt.getX(), evt.getY());
+             row = tl_books.rowAtPoint(evt.getPoint());
+             col = tl_books.columnAtPoint(evt.getPoint());
+            String a=tl_books.getValueAt(row, 4).toString();
+            int aa=Integer.parseInt(a);
+            if(aa==0)
+            {
+                j_return.setText("Return Book");
+                j_extend.setText("Extend Date");
+            }
+            else
+            {
+                j_return.setText("Return Book And Pay fine");
+                j_extend.setText("Extend Date");
+            }
+        
+        }
         
     }//GEN-LAST:event_tl_booksMouseReleased
 
@@ -1422,12 +1505,16 @@ public class Clerk extends javax.swing.JFrame {
     private void book_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_returnActionPerformed
         // TODO add your handling code here:
         int book=jc_books.getSelectedIndex();
-
+        String a=tl_books.getValueAt(book, 4).toString();
+        int aa=Integer.parseInt(a);
         if(obj.searchretbook(book)==false)
         {
             Book temp=obj.Books.get(book).getbook();
             obj.retBook(temp);
-            JOptionPane.showMessageDialog(null, "Return Requested");
+            if(aa==0)
+        JOptionPane.showMessageDialog(null, "Return Requested");
+         else
+              JOptionPane.showMessageDialog(null, "Fine paid and Return Requested");
             jDialog3.setVisible(false);
         }
         else
@@ -1516,6 +1603,31 @@ public class Clerk extends javax.swing.JFrame {
         jDialog18.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void j_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_returnActionPerformed
+        // TODO add your handling code here:
+        String a=tl_books.getValueAt(row, 4).toString();
+        int aa=Integer.parseInt(a);
+        if(obj.searchretbook(row)==false)
+        {
+        Book temp=obj.Books.get(row).getbook();
+         obj.retBook(temp);
+         if(aa==0)
+        JOptionPane.showMessageDialog(null, "Return Requested");
+         else
+              JOptionPane.showMessageDialog(null, "Fine paid and Return Requested");
+        jDialog3.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Already Return Requested"); 
+        }
+        refresh();
+    }//GEN-LAST:event_j_returnActionPerformed
+
+    private void t_fineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_fineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_fineActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1589,6 +1701,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1608,10 +1721,13 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
+    private javax.swing.JPopupMenu jPopupMenu5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JMenuItem j_extend;
+    private javax.swing.JMenuItem j_return;
     private javax.swing.JComboBox<String> jc_book;
     private javax.swing.JComboBox<String> jc_books;
     private javax.swing.JTextField jdel_username;
@@ -1641,6 +1757,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JMenuItem req_rej;
     private javax.swing.JMenuItem ret_acc;
     private javax.swing.JTextField t_email;
+    private javax.swing.JTextField t_fine;
     private javax.swing.JTextField t_name;
     private javax.swing.JTextField t_pno;
     private javax.swing.JTextField t_username;

@@ -219,17 +219,20 @@ public ArrayList<Book_loan> books_loan(ArrayList<Users_class> allusers,ArrayList
             Book a=getBook(id,allbooks);
             Users_class b=getUser(username,allusers);
             
-            Book_loan temploan=new Book_loan(b,a,issue,retdate,null);
+            Book_loan temploan=new Book_loan(b,a,issue,retdate,null,0);
             b.addloanedbook(temploan);
+            books.add(temploan);
         }
         else
         {
             Date returneddate=rs1.getDate("retereneddate");
+            int fine=rs1.getInt("fine");
             Book a=getBook(id,allbooks);
             Users_class b=getUser(username,allusers);
-            Book_loan temploan=new Book_loan(b,a,issue,retdate,returneddate);
+            Book_loan temploan=new Book_loan(b,a,issue,retdate,returneddate,fine);
             books.add(temploan);
-         }    
+         }
+        
         }
         return books;
     }

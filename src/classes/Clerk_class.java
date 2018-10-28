@@ -72,7 +72,7 @@ public class Clerk_class extends Borrower_class {
         lib.removefromreq(a);
         lib.setBookStatus(a, 0);
         Book_loan obj=new Book_loan(a.getUser(),a.getBook());
-        
+        lib.addtohistory(obj);
         a.getUser().addloanedbook(obj);
         
     }
