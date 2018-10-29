@@ -918,6 +918,15 @@ public class Clerk extends javax.swing.JFrame {
         );
 
         acc_new.setText("jMenuItem12");
+        acc_new.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
+                acc_newMenuKeyReleased(evt);
+            }
+            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
+            }
+        });
         acc_new.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acc_newActionPerformed(evt);
@@ -1540,7 +1549,7 @@ public class Clerk extends javax.swing.JFrame {
         // TODO add your handling code here:
         String search=l_book.getText();
          book_loans=obj.Search(search);
-        if(book_loans.isEmpty())
+        if(book_loans.isEmpty()==false)
         {
             jDialog10.setVisible(true);
             DefaultComboBoxModel model = (DefaultComboBoxModel) jc_book.getModel();
@@ -1646,6 +1655,10 @@ public class Clerk extends javax.swing.JFrame {
     private void t_fineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_fineActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_fineActionPerformed
+
+    private void acc_newMenuKeyReleased(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_acc_newMenuKeyReleased
+       // TODO add your handling code here:
+    }//GEN-LAST:event_acc_newMenuKeyReleased
 
     /**
      * @param args the command line arguments

@@ -60,7 +60,7 @@ public class Librarian_class extends Clerk_class {
     public void addBook(int id,String Title,String Author,String Subject,String Edition)
     {
         Book temp=new Book(id,Title,Author,Subject,Edition,1,5);
-        lib.addbook(temp);
+        lib.addnewbook(temp);
     }
     
 }

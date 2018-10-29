@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author abdul
@@ -38,7 +39,7 @@ public final class driver {
         try {
             books=getAllBooks();
         } catch (SQLException ex) {
-            Logger.getLogger(driver.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         
             users=getAllusers();
@@ -46,17 +47,17 @@ public final class driver {
         try {
             booksreq=bookreq(users,books);
         } catch (SQLException ex) {
-            Logger.getLogger(driver.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         try {
             booksret=bookret(users,books);
         } catch (SQLException ex) {
-            Logger.getLogger(driver.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         try {
             booksloan=books_loan(users,books);
         } catch (SQLException ex) {
-            Logger.getLogger(driver.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         newusers=getnewusers();
          lib=new Library(users,books,booksloan,booksreq,booksret,newusers);
@@ -85,11 +86,16 @@ public final class driver {
             {
                 Clerk ab=new Clerk(activeuser);
             }
-            else
+            else if(type==3)
             {
                 Librarian ab=new Librarian(activeuser);
             }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Wrong usertype");
+            }
         }
+        
         
     }
     public  ArrayList<register_class> getnewusers() throws SQLException
@@ -234,14 +240,14 @@ public ArrayList<Book_loan> books_loan(ArrayList<Users_class> allusers,ArrayList
         {
             Book a=getBook(id,allbooks);
             Users_class b=getUser(username,allusers);
-            
-            Book_loan temploan=new Book_loan(b,a,issue,retdate,null,0,bk_copyno);
+            Date returneddate=rs1.getDate("returneddate");
+            Book_loan temploan=new Book_loan(b,a,issue,retdate,returneddate,0,bk_copyno);
             b.addloanedbook(temploan);
             books.add(temploan);
         }
         else
         {
-            Date returneddate=rs1.getDate("retereneddate");
+            Date returneddate=rs1.getDate("returneddate");
             int fine=rs1.getInt("fine");
             Book a=getBook(id,allbooks);
             Users_class b=getUser(username,allusers);

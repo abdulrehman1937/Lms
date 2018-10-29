@@ -6,6 +6,7 @@
 package classes;
 import java.util.ListIterator;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author abdul
@@ -46,6 +47,18 @@ public class Library {
            }
 	}*/
         booksreq.add(obj);
+        insertintoreq(obj.getBook().getId(),obj.getUser().username);
+        
+    }
+    public void delreq(int bk_id,String username)
+    {
+        dbconection db=new dbconection();
+        db.delreq(username, bk_id);
+    }
+    public void insertintoreq(int bk_id,String username)
+    {
+        dbconection db=new dbconection();
+        db.insertreq(username, bk_id);
         
     }
     public void retbook(Book_User obj)
@@ -59,6 +72,18 @@ public class Library {
            }
 	}*/
         booksret.add(obj);
+        this.insertintoret(obj.getBook().getId(), obj.getUser().username);
+    }
+     public void insertintoret(int bk_id,String username)
+    {
+        dbconection db=new dbconection();
+        db.insertret(username, bk_id);
+        
+    }
+      public void delret(int bk_id,String username)
+    {
+        dbconection db=new dbconection();
+        db.delret(username, bk_id);
     }
     public void removefromreq(Book_User obj)
     {
@@ -70,6 +95,7 @@ public class Library {
                it.next().removereq(obj);
         }*/
         booksreq.remove(obj);
+        delreq(obj.getBook().getId(),obj.getUser().username);
     }
     public void removefromreq(int index)
     {
@@ -80,6 +106,7 @@ public class Library {
            {
                it.next().removereq(obj);
         }*/
+        delreq(booksreq.get(index).getBook().getId(),booksreq.get(index).getUser().username);
         booksreq.remove(index);
     }
     public void removefromret(Book_User obj)
@@ -95,23 +122,10 @@ public class Library {
 	}
         */
         booksret.remove(obj);
-    
+        this.delret(obj.getBook().getId(), obj.getUser().username);
     }
-    public void removefromret(int index)
-    {
-        /*
-        ListIterator<Users_class> it=null;
-        it=allusers.listIterator();
-        while(it.hasNext()){
-	   if(it.next().user_type()==2)
-           {
-               it.next().removeret(obj);
-           }
-	}
-        */
-        booksret.remove(index);
     
-    }
+    
     public Book_User getfromreq(int index)
     {
         /*
@@ -146,6 +160,16 @@ public class Library {
     {
         allbooks.add(a);
     }
+    public void addnewbook(Book a)
+    {
+        allbooks.add(a);
+        this.addnewbookdata(a.getId(), a.getTitle(), a.getAuthor(), a.getSubject(), a.getEdition(), a.getcopyies());
+    }
+    public void addnewbookdata(int id,String Title,String Author,String Subject,String Edition,int copies)
+    {
+        dbconection db=new dbconection();
+        db.addbook(id, Title, Author, Subject, Edition, copies);
+    }
     public void removebook(Book a)
     {
         allbooks.remove(a);
@@ -154,6 +178,17 @@ public class Library {
     {
         allusers.add(a);
     }
+     public void addnewuser(Users_class a,String pass)
+    {
+        allusers.add(a);
+       this.addnewuserrdata(a.username, a.Name, a.Email, pass, a.PhoneNumber);
+        
+    }
+     public void addnewuserrdata(String username,String name,String email,String pass,String pno)
+     {
+         dbconection db=new dbconection();
+         db.adduser(username, name, email, pass, pno);
+     }
     public void removeuser(String Username)
     {
         Users_class a=new Users_class();
@@ -171,7 +206,14 @@ public class Library {
     public void addtohistory(Book_loan a)
     {
         this.historyOfLoans.add(a);
+        addtobookloan(a.getbook().getId(),a.getuser().username,a.get_issue(),a.get_retdate(),a.get_returneddate(),a.get_returned(),a.getfine(),a.getcopy());
     }
+    public void addtobookloan(int id,String username,Date issue, Date retdate,Date returneddate,int returned,int fine,int copyno)
+    {
+        dbconection db=new dbconection();
+        db.insertloan(id, username, issue, retdate, returneddate, returned, fine, copyno);
+    }
+    
     public ArrayList<Book> Search(String Name)
     {
         ArrayList<Book> temp=new ArrayList<>();
@@ -303,7 +345,12 @@ public class Library {
         temp.Name=name;
         temp.PhoneNumber=pno;
         temp.credentials.chage_Pass(pass);
-        
+        this.updateUserdata(username, name, email, pno, pass);
+    }
+    public void updateUserdata(String username,String name,String email,String pno,String pass)
+    {
+        dbconection db=new dbconection();
+        db.updateUser(username, name, email, pno, pass);
     }
     public register_class getregister(int index)
     {
@@ -311,7 +358,14 @@ public class Library {
     }
     public void removenewuser(int index)
     {
+        this.removenewuserdata(newusers.get(index).getusername());
         newusers.remove(index);
+        
+    }
+    public void removenewuserdata(String username)
+    {
+        dbconection db=new dbconection();
+        db.delregister(username);
     }
     public void updateBook(int id,String Title,String Author,String Subject,String Edition)
     {
@@ -330,6 +384,12 @@ public class Library {
         temp.setEdition(Edition);
         temp.setSubject(Subject);
         temp.setTitle(Title);
+        this.updateBookdata(id, Title, Author, Subject, Edition);
+    }
+    public void updateBookdata(int id,String Title,String Author,String Subject,String Edition)
+    {
+        dbconection db=new dbconection();
+        db.updateBook(id, Title, Author, Subject, Edition);
     }
     public ArrayList<Book_loan> giveHistory()
     {
@@ -338,8 +398,21 @@ public class Library {
     public void updateHistory(Book_loan objprev,Book_loan obj)
     {
         int index=this.historyOfLoans.indexOf(objprev);
+        updateloan(obj.getuser().username,obj.getbook().getId(),obj.get_issue(),obj.get_returneddate(),obj.getfine());
         this.historyOfLoans.set(index, obj);
     }
-            
+    public void updateloan(String username,int book,Date issue,Date returned,int fine)
+    {
+        dbconection db=new dbconection();
+        db.updateloan(username, book, issue, returned, fine);
+    }
+    public int setBookstatus(Book a,int status)
+    {
+        int copyno=a.isStatus();
+        a.setStatus(status, copyno);
+        dbconection db=new dbconection();
+        db.updatebookstatus(a.getId(), copyno, status);
+        return copyno;
+    }
 }
 

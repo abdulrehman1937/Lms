@@ -139,6 +139,8 @@ public class Users_class {
     public void setPassword(String Password)
     {
         this.credentials.chage_Pass(Password);
+        dbconection db=new dbconection();
+        db.updatepass(this.username, Password);
     }
     public boolean searchretbook(int index)
     {

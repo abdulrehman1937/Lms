@@ -6,8 +6,11 @@
 package classes;
 
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,20 +62,38 @@ public class Book_loan {
     }
     public String getissue()
     {
-        return issuedate.toString();
+        return this.datetostring(issuedate);
+        
+        
     }
     public String getret()
     {
         
-        return returndate.toString();
+        return this.datetostring(this.returndate);
     }
     public String getreted()
     {
+        try
+        {
         if(returneddate.getYear()==1899)
         {
             return "Not returned";
         }
-        return returneddate.toString();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        return this.datetostring(this.returneddate);
+    }
+    public int get_returned()
+    {
+        if(returneddate.getYear()==1899)
+        {
+            return 0;
+        }
+        return 1;
     }
     public void setActualDate()
     {
@@ -105,6 +126,22 @@ public class Book_loan {
     {
         return this.copyno;
     }
-    
-    
+    public Date get_issue()
+    {
+        return this.issuedate;
+    }
+    public Date get_retdate()
+    {
+        return this.returndate;
+    }
+    public Date get_returneddate()
+    {
+        return this.returneddate;
+    }
+    public String datetostring(Date a)
+    {
+        String s;
+        s = String.valueOf(a.getDate())+"-"+String.valueOf(a.getMonth())+"-"+String.valueOf(a.getYear());
+        return s;
+    }
 }

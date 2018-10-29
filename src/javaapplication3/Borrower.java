@@ -832,7 +832,7 @@ public class Borrower extends javax.swing.JFrame {
         // TODO add your handling code here:
         String search=l_book.getText();
         book_loans=obj.Search(search);
-        if(book_loans.isEmpty())
+        if(book_loans.isEmpty()==false)
         {
             jDialog6.setVisible(true);
             DefaultComboBoxModel model = (DefaultComboBoxModel) jc_book.getModel();

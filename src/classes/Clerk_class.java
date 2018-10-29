@@ -65,8 +65,7 @@ public class Clerk_class extends Borrower_class {
         Book_loan obj=a.getUser().getbookobj(a.getBook());
         Book_loan objprev=obj;
         obj.setActualDate();
-        int copyno=obj.getcopy();
-        a.getBook().setStatus(1,copyno);
+        lib.setBookstatus(a.getBook(), 1);
         lib.updateHistory(objprev, obj);
         a.getUser().delBook(obj);
     }
@@ -74,8 +73,8 @@ public class Clerk_class extends Borrower_class {
     public void check_out(Book_User a)
     {
         lib.removefromreq(a);
-        int copyno=a.getBook().isStatus();
-        a.getBook().setStatus(0, copyno);
+        
+        int copyno=lib.setBookstatus(a.getBook(), 0);
         Book_loan obj=new Book_loan(a.getUser(),a.getBook(),copyno);
         lib.addtohistory(obj);
         a.getUser().addloanedbook(obj);
@@ -109,7 +108,7 @@ public class Clerk_class extends Borrower_class {
         ArrayList<Book_loan> books=new ArrayList<>();
         
         Users_class a=new Borrower_class(user.getname(),user.getusername(),user.getemail(),user.getpno(),books,temp,Clerk_class.lib);
-        lib.adduser(a);
+        lib.addnewuser(a,user.getpass());
         lib.removenewuser(row);
     }
     @Override

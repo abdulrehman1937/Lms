@@ -30,9 +30,10 @@ public class signin extends javax.swing.JFrame {
             try {
                 obj = new driver();
             } catch (SQLException ex) {
-                Logger.getLogger(signin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex);;
             }
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -172,8 +173,16 @@ public class signin extends javax.swing.JFrame {
         else
         {
             
-            obj.signin(Username, Password, a);
-            obj.signmein();
+            if(obj.signin(Username, Password, a))
+            {
+                obj.signmein();
+                this.setVisible(false);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Incorrect username or password");
+            }
+            
         }
         
         
@@ -198,6 +207,7 @@ public class signin extends javax.swing.JFrame {
         
         /* Set the Nimbus look and feel */
         showsignin();
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -225,11 +235,7 @@ public class signin extends javax.swing.JFrame {
     }
     public static void showsignin()
     {
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new signin().setVisible(true);
-            }
-        });
+        signin a=new signin(); 
          
     }
 

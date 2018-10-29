@@ -1245,6 +1245,7 @@
             <Property name="text" type="java.lang.String" value="jMenuItem12"/>
           </Properties>
           <Events>
+            <EventHandler event="menuKeyReleased" listener="javax.swing.event.MenuKeyListener" parameters="javax.swing.event.MenuKeyEvent" handler="acc_newMenuKeyReleased"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acc_newActionPerformed"/>
           </Events>
         </MenuItem>

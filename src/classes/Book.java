@@ -56,6 +56,10 @@ public class Book {
         this.Edition=Edition;
         
     }
+    public int getcopyies()
+    {
+        return this.noofcopies;
+    }
     public void setId(int id)
     {
         this.id=id;
