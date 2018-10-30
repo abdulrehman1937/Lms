@@ -8,9 +8,14 @@ package javaapplication3;
 import classes.Book;
 import classes.Book_loan;
 import classes.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +42,13 @@ public class Borrower extends javax.swing.JFrame {
         
     }
     public Borrower(Users_class a) {
-        
+        this.addWindowListener(new WindowAdapter() {
+  @Override
+  public void windowClosing(WindowEvent we) {
+      Users_class.lib.logout(obj.username);
+      System.exit(0);
+  }
+});
         initComponents();
         obj=a;
        t_name.setText(a.Name);
@@ -87,7 +98,11 @@ public class Borrower extends javax.swing.JFrame {
     }
     void refresh()
     {
-        
+        try {
+            Users_class.lib.init();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         inittable();
     }
 
@@ -148,6 +163,7 @@ public class Borrower extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         t_fine = new javax.swing.JTextField();
         change_password1 = new keeptoo.KButton();
+        change_password2 = new keeptoo.KButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -564,7 +580,7 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel1.add(t_fine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 210, 39));
 
         change_password1.setText("See Details");
-        change_password1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        change_password1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         change_password1.setkBorderRadius(40);
         change_password1.setkEndColor(new java.awt.Color(102, 102, 255));
         change_password1.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -574,7 +590,20 @@ public class Borrower extends javax.swing.JFrame {
                 change_password1ActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 230, 80));
+        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 270, 50));
+
+        change_password2.setText("Log out");
+        change_password2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        change_password2.setkBorderRadius(40);
+        change_password2.setkEndColor(new java.awt.Color(102, 102, 255));
+        change_password2.setkHoverStartColor(new java.awt.Color(51, 51, 51));
+        change_password2.setOpaque(false);
+        change_password2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                change_password2ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(change_password2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 20, 270, 50));
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(56, 40));
 
@@ -670,6 +699,7 @@ public class Borrower extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        refresh();
         if(obj.computefine()>500)
         {
             JOptionPane.showMessageDialog(null, "Can not issue new book First clear your fine");
@@ -727,6 +757,7 @@ public class Borrower extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog1.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -811,6 +842,7 @@ public class Borrower extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog3.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -820,6 +852,7 @@ public class Borrower extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        refresh();
          jDialog5.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -941,6 +974,13 @@ public class Borrower extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jc_booksActionPerformed
 
+    private void change_password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_password2ActionPerformed
+        // TODO add your handling code here:
+        obj.lib.logout(obj.username);
+        signin a=new signin();
+        this.setVisible(false);
+    }//GEN-LAST:event_change_password2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -978,6 +1018,7 @@ public class Borrower extends javax.swing.JFrame {
     private javax.swing.JPasswordField c_password;
     private keeptoo.KButton change_password;
     private keeptoo.KButton change_password1;
+    private keeptoo.KButton change_password2;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDialog jDialog1;

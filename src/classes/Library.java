@@ -560,10 +560,13 @@ public class Library {
     {
         if(activeuser!=null)
         {
-            
+            dbconection db=new dbconection();
+            db.login(activeuser.username);
             int type=activeuser.user_type();
             if(type==1)
             {
+                
+                
                 Borrower ab=new Borrower(activeuser);
             }
             else if(type==2)
@@ -660,6 +663,7 @@ public class Library {
         {
             
             Borrower_class temp=new Borrower_class(Name,username,Email,pno,Books,a,lib);
+            
             allusers.add(temp);
         }
         else if(type==2)
@@ -821,12 +825,27 @@ public Book_loan getmyhistory(String Username,int id)
     while(it.hasNext())
     {
         temp=it.next();
-        if(temp.getuser().username==Username && temp.getbook().getId()==id)
+        if(temp.getuser().username.equals(Username) && temp.getbook().getId()==id)
         {
             return temp;
         }
     }
     return null;
+}
+public boolean alreadylogin(String username)
+{
+    dbconection db=new dbconection();
+        try {
+            return db.alreadyloggedin(username);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return false;
+}
+public void logout(String username)
+{
+    dbconection db=new dbconection();
+    db.logout(username);
 }
 }
 

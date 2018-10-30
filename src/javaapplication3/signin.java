@@ -5,9 +5,9 @@
  */
 package javaapplication3;
 import classes.Library;
-import classes.driver;
+import classes.dbconection;
+
 import javax.swing.JOptionPane;
-import classes.sign_in;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,7 +81,7 @@ public class signin extends javax.swing.JFrame {
         });
         kGradientPanel1.add(b_signin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 230, -1));
 
-        t_username.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        t_username.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         t_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_username.setOpaque(false);
         t_username.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class signin extends javax.swing.JFrame {
         });
         kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 220, 30));
 
-        t_password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        t_password.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         t_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_password.setOpaque(false);
         kGradientPanel1.add(t_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 220, 30));
@@ -183,8 +183,16 @@ public class signin extends javax.swing.JFrame {
             
             if(obj.signin(Username, Password, a,obj))
             {
-                obj.signmein();
-                this.setVisible(false);
+                if(obj.alreadylogin(Username))
+                {
+                    
+                    JOptionPane.showMessageDialog(null, "Already logged in");
+                }
+                else
+                {
+                    obj.signmein();
+                    this.setVisible(false);
+                }
             }
             else
             {

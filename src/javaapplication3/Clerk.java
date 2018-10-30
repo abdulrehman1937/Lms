@@ -10,6 +10,9 @@ import classes.Book_User;
 import classes.Book_loan;
 import classes.Users_class;
 import classes.register_class;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.DefaultComboBoxModel;
@@ -37,7 +40,13 @@ public class Clerk extends javax.swing.JFrame {
     public Clerk(Users_class a) {
        
         
-        
+        this.addWindowListener(new WindowAdapter() {
+  @Override
+  public void windowClosing(WindowEvent we) {
+      Users_class.lib.logout(obj.username);
+      System.exit(0);
+  }
+});
         initComponents();
         obj=a;
        t_name.setText(a.Name);
@@ -199,6 +208,11 @@ public class Clerk extends javax.swing.JFrame {
     }
     void refresh()
     {
+        try {
+            Users_class.lib.init();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         initBooksreq();
         initBooksret();
         initIssuebook();
@@ -301,6 +315,8 @@ public class Clerk extends javax.swing.JFrame {
         t_username = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         t_fine = new javax.swing.JTextField();
+        kButton3 = new keeptoo.KButton();
+        change_password1 = new keeptoo.KButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -439,16 +455,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
-                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog4.setSize(new java.awt.Dimension(500, 500));
@@ -485,16 +496,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog4.getContentPane().setLayout(jDialog4Layout);
         jDialog4Layout.setHorizontalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog4Layout.createSequentialGroup()
-                .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog4Layout.setVerticalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog5.setSize(new java.awt.Dimension(500, 500));
@@ -521,15 +527,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog5.getContentPane().setLayout(jDialog5Layout);
         jDialog5Layout.setHorizontalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 59, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog5Layout.setVerticalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
 
         jMenuItem11.setText("jMenuItem11");
@@ -567,21 +569,15 @@ public class Clerk extends javax.swing.JFrame {
         jDialog6.getContentPane().setLayout(jDialog6Layout);
         jDialog6Layout.setHorizontalGroup(
             jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGap(0, 849, Short.MAX_VALUE)
             .addGroup(jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE))
         );
         jDialog6Layout.setVerticalGroup(
             jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
             .addGroup(jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
         );
 
         req_acc.setText("jMenuItem12");
@@ -640,16 +636,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog7.getContentPane().setLayout(jDialog7Layout);
         jDialog7Layout.setHorizontalGroup(
             jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog7Layout.createSequentialGroup()
-                .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog7Layout.setVerticalGroup(
             jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog8.setSize(new java.awt.Dimension(500, 500));
@@ -733,17 +724,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog8.getContentPane().setLayout(jDialog8Layout);
         jDialog8Layout.setHorizontalGroup(
             jDialog8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
         );
         jDialog8Layout.setVerticalGroup(
             jDialog8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
         );
 
         jDialog9.setSize(new java.awt.Dimension(500, 500));
@@ -770,13 +755,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog9.getContentPane().setLayout(jDialog9Layout);
         jDialog9Layout.setHorizontalGroup(
             jDialog9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
         );
         jDialog9Layout.setVerticalGroup(
             jDialog9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog9Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 396, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         ret_acc.setText("jMenuItem14");
@@ -820,16 +803,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog10.getContentPane().setLayout(jDialog10Layout);
         jDialog10Layout.setHorizontalGroup(
             jDialog10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog10Layout.createSequentialGroup()
-                .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog10Layout.setVerticalGroup(
             jDialog10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog3.setSize(new java.awt.Dimension(500, 500));
@@ -866,17 +844,14 @@ public class Clerk extends javax.swing.JFrame {
         jDialog3.getContentPane().setLayout(jDialog3Layout);
         jDialog3Layout.setHorizontalGroup(
             jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog3Layout.createSequentialGroup()
-                .addComponent(kGradientPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog3Layout.setVerticalGroup(
             jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
+
+        jDialog11.setSize(new java.awt.Dimension(1000, 1000));
 
         tl_newusers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -900,21 +875,15 @@ public class Clerk extends javax.swing.JFrame {
         jDialog11.getContentPane().setLayout(jDialog11Layout);
         jDialog11Layout.setHorizontalGroup(
             jDialog11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 719, Short.MAX_VALUE)
             .addGroup(jDialog11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog11Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE))
         );
         jDialog11Layout.setVerticalGroup(
             jDialog11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
             .addGroup(jDialog11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog11Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE))
         );
 
         acc_new.setText("jMenuItem12");
@@ -941,6 +910,8 @@ public class Clerk extends javax.swing.JFrame {
             }
         });
         jPopupMenu4.add(rej_new);
+
+        jDialog18.setSize(new java.awt.Dimension(1000, 1000));
 
         kGradientPanel9.setBackground(new java.awt.Color(255, 255, 255));
         kGradientPanel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -980,16 +951,11 @@ public class Clerk extends javax.swing.JFrame {
         jDialog18.getContentPane().setLayout(jDialog18Layout);
         jDialog18Layout.setHorizontalGroup(
             jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog18Layout.createSequentialGroup()
-                .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog18Layout.setVerticalGroup(
             jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
         );
 
         j_return.setText("jMenuItem13");
@@ -1092,6 +1058,28 @@ public class Clerk extends javax.swing.JFrame {
         });
         kGradientPanel1.add(t_fine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 210, 39));
 
+        kButton3.setText("Logout");
+        kButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        kButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton3ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(kButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
+
+        change_password1.setText("See Details");
+        change_password1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        change_password1.setkBorderRadius(40);
+        change_password1.setkEndColor(new java.awt.Color(102, 102, 255));
+        change_password1.setkHoverStartColor(new java.awt.Color(51, 51, 51));
+        change_password1.setOpaque(false);
+        change_password1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                change_password1ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 270, 50));
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Issue New Book");
@@ -1186,15 +1174,11 @@ public class Clerk extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
         );
 
         pack();
@@ -1218,6 +1202,7 @@ public class Clerk extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        refresh();
         if(obj.computefine()>500)
         {
             JOptionPane.showMessageDialog(null, "Can not issue new book First clear your fine");
@@ -1229,8 +1214,9 @@ public class Clerk extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        jDialog5.setVisible(true);
         refresh();
+        jDialog5.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -1240,11 +1226,13 @@ public class Clerk extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog3.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog1.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -1295,8 +1283,8 @@ public class Clerk extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        jDialog6.setVisible(true);
         refresh();
+        jDialog6.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -1444,8 +1432,9 @@ public class Clerk extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        jDialog9.setVisible(true);
         refresh();
+        jDialog9.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void tl_retbooksMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tl_retbooksMouseReleased
@@ -1613,6 +1602,7 @@ public class Clerk extends javax.swing.JFrame {
         obj.adduser(row);
         JOptionPane.showMessageDialog(null, "User added");
         jDialog11.setVisible(false);
+        refresh();
         
     }//GEN-LAST:event_acc_newActionPerformed
 
@@ -1621,6 +1611,7 @@ public class Clerk extends javax.swing.JFrame {
         obj.removenwuser(row);
         JOptionPane.showMessageDialog(null, "User removed");
         jDialog11.setVisible(false);
+        refresh();
     }//GEN-LAST:event_rej_newActionPerformed
 
     private void kButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton8ActionPerformed
@@ -1680,6 +1671,18 @@ public class Clerk extends javax.swing.JFrame {
        // TODO add your handling code here:
     }//GEN-LAST:event_acc_newMenuKeyReleased
 
+    private void kButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton3ActionPerformed
+        // TODO add your handling code here:
+         obj.lib.logout(obj.username);
+        signin a=new signin();
+        this.setVisible(false);
+    }//GEN-LAST:event_kButton3ActionPerformed
+
+    private void change_password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_password1ActionPerformed
+        // TODO add your handling code here:
+        jDialog5.setVisible(true);
+    }//GEN-LAST:event_change_password1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1719,6 +1722,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JMenuItem acc_new;
     private keeptoo.KButton book_return;
     private javax.swing.JPasswordField c_password;
+    private keeptoo.KButton change_password1;
     private javax.swing.JTextField et_email;
     private javax.swing.JTextField et_name;
     private javax.swing.JTextField et_pass;
@@ -1786,6 +1790,7 @@ public class Clerk extends javax.swing.JFrame {
     private javax.swing.JTextField jedit_username;
     private keeptoo.KButton kButton1;
     private keeptoo.KButton kButton2;
+    private keeptoo.KButton kButton3;
     private keeptoo.KButton kButton4;
     private keeptoo.KButton kButton5;
     private keeptoo.KButton kButton6;

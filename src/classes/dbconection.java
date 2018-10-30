@@ -469,5 +469,63 @@ public class dbconection
             
         }
     }
+    public void login(String username)
+    {
+        try
+        {
+            
+            PreparedStatement statement;
+            String mysql="UPDATE Users SET loginstatus=1 WHERE u_id=?";
+            statement = con.prepareStatement(mysql);
+            
+            statement.setString(1,username);
+            statement.executeUpdate();
+            
+            
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+            
+        }
+    }
+    public void logout(String username)
+    {
+        try
+        {
+            
+            PreparedStatement statement;
+            String mysql="UPDATE Users SET loginstatus=0 WHERE u_id=?";
+            statement = con.prepareStatement(mysql);
+            
+            statement.setString(1,username);
+            statement.executeUpdate();
+            
+            
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+            
+        }
+    }
+    public boolean alreadyloggedin(String username) throws SQLException
+    {
+        PreparedStatement statement;
+          String mysql="select * from Users where u_id = ?";
+            statement = con.prepareStatement(mysql); 
+        
+        statement.setString(1, username);
+        ResultSet r1;
+        r1=statement.executeQuery();
+        r1.next();
+        int status;
+        status=r1.getInt("loginstatus");
+        if(status==1)
+        {
+            return true;
+        }
+        return false;
+    }
         
 }

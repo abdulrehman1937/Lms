@@ -66,9 +66,9 @@ public class Librarian_class extends Clerk_class {
         lib.updateBook(id, Title, Author, Subject, Edition);
     }
     @Override
-    public void addBook(int id,String Title,String Author,String Subject,String Edition)
+    public void addBook(int id,String Title,String Author,String Subject,String Edition,int copies)
     {
-        Book temp=new Book(id,Title,Author,Subject,Edition,1,5);
+        Book temp=new Book(id,Title,Author,Subject,Edition,1,copies);
         lib.addnewbook(temp);
     }
     @Override

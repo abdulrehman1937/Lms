@@ -10,6 +10,9 @@ import classes.Book_User;
 import classes.Book_loan;
 import classes.Users_class;
 import classes.register_class;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.DefaultComboBoxModel;
@@ -36,7 +39,13 @@ public class Librarian extends javax.swing.JFrame {
     }
     public Librarian(Users_class a) {
        
-        
+        this.addWindowListener(new WindowAdapter() {
+  @Override
+  public void windowClosing(WindowEvent we) {
+      Users_class.lib.logout(obj.username);
+      System.exit(0);
+  }
+});
         
         initComponents();
         obj=a;
@@ -236,6 +245,11 @@ public class Librarian extends javax.swing.JFrame {
     }
     void refresh()
     {
+        try {
+            Users_class.lib.init();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         initIssuebook();
         initBooksreq();
         initBooksret();
@@ -295,6 +309,8 @@ public class Librarian extends javax.swing.JFrame {
         bk_newed = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         bk_newid = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        bk_copies = new javax.swing.JTextField();
         jDialog10 = new javax.swing.JDialog();
         kGradientPanel9 = new keeptoo.KGradientPanel();
         kButton8 = new keeptoo.KButton();
@@ -377,6 +393,8 @@ public class Librarian extends javax.swing.JFrame {
         t_username = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         t_fine = new javax.swing.JTextField();
+        kButton3 = new keeptoo.KButton();
+        change_password1 = new keeptoo.KButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -504,16 +522,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog4.getContentPane().setLayout(jDialog4Layout);
         jDialog4Layout.setHorizontalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog4Layout.createSequentialGroup()
-                .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog4Layout.setVerticalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog7.setSize(new java.awt.Dimension(500, 500));
@@ -556,16 +569,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog7.getContentPane().setLayout(jDialog7Layout);
         jDialog7Layout.setHorizontalGroup(
             jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog7Layout.createSequentialGroup()
-                .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog7Layout.setVerticalGroup(
             jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog8.setSize(new java.awt.Dimension(500, 500));
@@ -675,7 +683,7 @@ public class Librarian extends javax.swing.JFrame {
                 kButton7ActionPerformed(evt);
             }
         });
-        kGradientPanel8.add(kButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+        kGradientPanel8.add(kButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
@@ -752,19 +760,30 @@ public class Librarian extends javax.swing.JFrame {
         });
         kGradientPanel8.add(bk_newid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 210, 39));
 
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel32.setText("No of Copies");
+        kGradientPanel8.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 120, 30));
+
+        bk_copies.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bk_copies.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        bk_copies.setOpaque(false);
+        bk_copies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bk_copiesActionPerformed(evt);
+            }
+        });
+        kGradientPanel8.add(bk_copies, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 210, 39));
+
         javax.swing.GroupLayout jDialog9Layout = new javax.swing.GroupLayout(jDialog9.getContentPane());
         jDialog9.getContentPane().setLayout(jDialog9Layout);
         jDialog9Layout.setHorizontalGroup(
             jDialog9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog9Layout.createSequentialGroup()
-                .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 117, Short.MAX_VALUE))
+            .addComponent(kGradientPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
         );
         jDialog9Layout.setVerticalGroup(
             jDialog9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog9Layout.createSequentialGroup()
-                .addComponent(kGradientPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 38, Short.MAX_VALUE))
+            .addComponent(kGradientPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
         );
 
         jDialog10.setSize(new java.awt.Dimension(500, 500));
@@ -807,16 +826,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog10.getContentPane().setLayout(jDialog10Layout);
         jDialog10Layout.setHorizontalGroup(
             jDialog10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog10Layout.createSequentialGroup()
-                .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog10Layout.setVerticalGroup(
             jDialog10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog11.setSize(new java.awt.Dimension(500, 500));
@@ -859,16 +873,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog11.getContentPane().setLayout(jDialog11Layout);
         jDialog11Layout.setHorizontalGroup(
             jDialog11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog11Layout.createSequentialGroup()
-                .addComponent(kGradientPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog11Layout.setVerticalGroup(
             jDialog11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog12.setSize(new java.awt.Dimension(500, 500));
@@ -956,15 +965,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog12.getContentPane().setLayout(jDialog12Layout);
         jDialog12Layout.setHorizontalGroup(
             jDialog12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog12Layout.createSequentialGroup()
-                .addComponent(kGradientPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
         jDialog12Layout.setVerticalGroup(
             jDialog12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog12Layout.createSequentialGroup()
-                .addComponent(kGradientPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
         );
 
         jDialog2.setSize(new java.awt.Dimension(500, 500));
@@ -1016,16 +1021,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
-                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog13.setSize(new java.awt.Dimension(500, 500));
@@ -1061,16 +1061,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog13.getContentPane().setLayout(jDialog13Layout);
         jDialog13Layout.setHorizontalGroup(
             jDialog13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog13Layout.createSequentialGroup()
-                .addComponent(kGradientPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog13Layout.setVerticalGroup(
             jDialog13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog3.setSize(new java.awt.Dimension(500, 500));
@@ -1107,16 +1102,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog3.getContentPane().setLayout(jDialog3Layout);
         jDialog3Layout.setHorizontalGroup(
             jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog3Layout.createSequentialGroup()
-                .addComponent(kGradientPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog3Layout.setVerticalGroup(
             jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jDialog5.setSize(new java.awt.Dimension(500, 500));
@@ -1143,15 +1133,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog5.getContentPane().setLayout(jDialog5Layout);
         jDialog5Layout.setHorizontalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 59, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog5Layout.setVerticalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
 
         jMenuItem11.setText("jMenuItem11");
@@ -1189,20 +1175,18 @@ public class Librarian extends javax.swing.JFrame {
         jDialog6.getContentPane().setLayout(jDialog6Layout);
         jDialog6Layout.setHorizontalGroup(
             jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGap(0, 751, Short.MAX_VALUE)
             .addGroup(jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jDialog6Layout.setVerticalGroup(
             jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
             .addGroup(jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1250,9 +1234,7 @@ public class Librarian extends javax.swing.JFrame {
         );
         jDialog14Layout.setVerticalGroup(
             jDialog14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog14Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 396, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
         );
 
         ret_acc.setText("jMenuItem14");
@@ -1262,6 +1244,8 @@ public class Librarian extends javax.swing.JFrame {
             }
         });
         jPopupMenu3.add(ret_acc);
+
+        jDialog15.setSize(new java.awt.Dimension(1000, 1000));
 
         tl_newusers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1285,21 +1269,17 @@ public class Librarian extends javax.swing.JFrame {
         jDialog15.getContentPane().setLayout(jDialog15Layout);
         jDialog15Layout.setHorizontalGroup(
             jDialog15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(jDialog15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog15Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
         );
         jDialog15Layout.setVerticalGroup(
             jDialog15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 951, Short.MAX_VALUE)
             .addGroup(jDialog15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog15Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog15Layout.createSequentialGroup()
+                    .addGap(0, 475, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         acc_new.setText("jMenuItem12");
@@ -1317,6 +1297,8 @@ public class Librarian extends javax.swing.JFrame {
             }
         });
         jPopupMenu4.add(rej_new);
+
+        jDialog18.setSize(new java.awt.Dimension(1000, 1000));
 
         kGradientPanel13.setBackground(new java.awt.Color(255, 255, 255));
         kGradientPanel13.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -1356,16 +1338,11 @@ public class Librarian extends javax.swing.JFrame {
         jDialog18.getContentPane().setLayout(jDialog18Layout);
         jDialog18Layout.setHorizontalGroup(
             jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog18Layout.createSequentialGroup()
-                .addComponent(kGradientPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog18Layout.setVerticalGroup(
             jDialog18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         j_return.setText("jMenuItem13");
@@ -1378,6 +1355,8 @@ public class Librarian extends javax.swing.JFrame {
 
         j_extend.setText("jMenuItem17");
         jPopupMenu5.add(j_extend);
+
+        jDialog16.setSize(new java.awt.Dimension(1000, 1000));
 
         tl_history.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1396,21 +1375,15 @@ public class Librarian extends javax.swing.JFrame {
         jDialog16.getContentPane().setLayout(jDialog16Layout);
         jDialog16Layout.setHorizontalGroup(
             jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 814, Short.MAX_VALUE)
             .addGroup(jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog16Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE))
         );
         jDialog16Layout.setVerticalGroup(
             jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 594, Short.MAX_VALUE)
             .addGroup(jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog16Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1501,6 +1474,28 @@ public class Librarian extends javax.swing.JFrame {
             }
         });
         kGradientPanel1.add(t_fine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 210, 39));
+
+        kButton3.setText("Logout");
+        kButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        kButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton3ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(kButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
+
+        change_password1.setText("See Details");
+        change_password1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        change_password1.setkBorderRadius(40);
+        change_password1.setkEndColor(new java.awt.Color(102, 102, 255));
+        change_password1.setkHoverStartColor(new java.awt.Color(51, 51, 51));
+        change_password1.setOpaque(false);
+        change_password1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                change_password1ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 270, 50));
 
         jMenu1.setText("File");
 
@@ -1654,16 +1649,19 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog5.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog6.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog15.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -1675,11 +1673,13 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog3.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog1.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -1763,7 +1763,10 @@ public class Librarian extends javax.swing.JFrame {
         String subject=bk_newsub.getText();
         String edition=bk_newed.getText();
         String ID=bk_newid.getText();
-        if(title.isEmpty() || author.isEmpty() || subject.isEmpty() || edition.isEmpty() || ID.isEmpty())
+        String cop=bk_copies.getText();
+        int copies;
+        copies=Integer.parseInt(cop);
+        if(title.isEmpty() || author.isEmpty() || subject.isEmpty() || edition.isEmpty() || ID.isEmpty() || cop.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "All feilds are required");
         }
@@ -1778,7 +1781,7 @@ public class Librarian extends javax.swing.JFrame {
             }
             else
             {
-            obj.addBook(id, title, author, subject, edition);
+            obj.addBook(id, title, author, subject, edition,copies);
             JOptionPane.showMessageDialog(null, "Book added");
             jDialog9.setVisible(false);
             }
@@ -1877,12 +1880,14 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog9.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
-        jDialog10.show();
+        refresh();
+        jDialog10.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
@@ -2128,6 +2133,7 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog14.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -2230,6 +2236,7 @@ public class Librarian extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
+        refresh();
         jDialog18.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
@@ -2263,6 +2270,22 @@ public class Librarian extends javax.swing.JFrame {
         refresh();
         jDialog16.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void bk_copiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bk_copiesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bk_copiesActionPerformed
+
+    private void kButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton3ActionPerformed
+        // TODO add your handling code here:
+        obj.lib.logout(obj.username);
+        signin a=new signin();
+        this.setVisible(false);
+    }//GEN-LAST:event_kButton3ActionPerformed
+
+    private void change_password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_password1ActionPerformed
+        // TODO add your handling code here:
+        jDialog5.setVisible(true);
+    }//GEN-LAST:event_change_password1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2301,6 +2324,7 @@ public class Librarian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acc_new;
+    private javax.swing.JTextField bk_copies;
     private javax.swing.JTextField bk_newauthor;
     private javax.swing.JTextField bk_newed;
     private javax.swing.JTextField bk_newid;
@@ -2308,6 +2332,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JTextField bk_newtitle;
     private keeptoo.KButton book_return;
     private javax.swing.JPasswordField c_password;
+    private keeptoo.KButton change_password1;
     private javax.swing.JTextField del_book;
     private javax.swing.JTextField et_email;
     private javax.swing.JTextField et_name;
@@ -2354,6 +2379,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2400,6 +2426,7 @@ public class Librarian extends javax.swing.JFrame {
     private keeptoo.KButton kButton11;
     private keeptoo.KButton kButton12;
     private keeptoo.KButton kButton2;
+    private keeptoo.KButton kButton3;
     private keeptoo.KButton kButton4;
     private keeptoo.KButton kButton5;
     private keeptoo.KButton kButton6;

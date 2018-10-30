@@ -182,7 +182,7 @@ public class Users_class {
       {
           
       }
-      public void addBook(int id,String Title,String Author,String Subject,String Edition)
+      public void addBook(int id,String Title,String Author,String Subject,String Edition,int copies)
       {
           
       }

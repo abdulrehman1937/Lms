@@ -32,6 +32,7 @@ public class Book {
     public Book(int id ,String Title,String Author, String Subject,String Edition,int status,int noofcopies)
     {
         this.noofcopies=noofcopies;
+        this.status=new ArrayList<>();
         for(int i=0;i<this.noofcopies;i++)
         {
             this.status.add(i, 1);
