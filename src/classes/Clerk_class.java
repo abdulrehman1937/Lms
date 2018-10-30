@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package classes;
+import java.sql.SQLException;
 import java.util.ListIterator;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,7 +69,7 @@ public class Clerk_class extends Borrower_class {
         Book_loan obj=a.getUser().getbookobj(a.getBook());
         Book_loan objprev=obj;
         obj.setActualDate();
-        lib.setBookstatus(a.getBook(), 1);
+        lib.setBookstatusreturn(a.getBook(), obj.getcopy());
         lib.updateHistory(objprev, obj);
         a.getUser().delBook(obj);
     }
@@ -132,6 +136,11 @@ public class Clerk_class extends Borrower_class {
      public void deluser(String Username)
       {
           
-          lib.removeuser(Username);
+        try {
+            lib.removeuser(Username);
+            lib.init();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
       }
 }

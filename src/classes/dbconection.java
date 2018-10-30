@@ -431,5 +431,43 @@ public class dbconection
             
         }
     }
+    public void deleteuser(String username)
+    {
+        try
+        {
+            
+            PreparedStatement statement;
+          String mysql="delete from Users WHERE u_id=?";
+            statement = con.prepareStatement(mysql);
+            statement.setString(1, username);
+            statement.executeUpdate();
+            
+            
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+            
+        }
+    }
+    public void deletebook(int id)
+    {
+        try
+        {
+            
+            PreparedStatement statement;
+          String mysql="delete from book WHERE bk_id=?";
+            statement = con.prepareStatement(mysql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+            
+            
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+            
+        }
+    }
         
 }

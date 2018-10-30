@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package javaapplication3;
+import classes.Library;
 import classes.driver;
 import javax.swing.JOptionPane;
 import classes.sign_in;
@@ -24,11 +25,12 @@ public class signin extends javax.swing.JFrame {
     public Boolean exit=false;
     public String Username;
     public String Password;
-    driver obj;
+    Library obj;
     public signin() {
         obj = null;
             try {
-                obj = new driver();
+                obj = new Library();
+                obj.init();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex);;
             }
@@ -67,7 +69,7 @@ public class signin extends javax.swing.JFrame {
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         b_signin.setText("Sign in");
-        b_signin.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        b_signin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         b_signin.setkBorderRadius(40);
         b_signin.setkEndColor(new java.awt.Color(102, 102, 255));
         b_signin.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -77,9 +79,9 @@ public class signin extends javax.swing.JFrame {
                 b_signinActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(b_signin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, -1, -1));
+        kGradientPanel1.add(b_signin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 230, -1));
 
-        t_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_username.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         t_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_username.setOpaque(false);
         t_username.addActionListener(new java.awt.event.ActionListener() {
@@ -87,21 +89,22 @@ public class signin extends javax.swing.JFrame {
                 t_usernameActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 220, 30));
+        kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 220, 30));
 
+        t_password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         t_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         t_password.setOpaque(false);
-        kGradientPanel1.add(t_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 210, 30));
+        kGradientPanel1.add(t_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 220, 30));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("User Name:");
-        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 70, 30));
+        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 140, 30));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Password:");
-        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 60, 30));
+        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 150, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication3/149071_3ObHrl.jpg"))); // NOI18N
         kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 220, 220));
@@ -110,6 +113,7 @@ public class signin extends javax.swing.JFrame {
         jLabel4.setText("LMS");
         kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 210, 50));
 
+        c_accountType.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_accountType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Please Select One Option--", "Student/Borrower", "Clerk", "Librarian" }));
         c_accountType.setOpaque(false);
         c_accountType.addActionListener(new java.awt.event.ActionListener() {
@@ -117,10 +121,10 @@ public class signin extends javax.swing.JFrame {
                 c_accountTypeActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(c_accountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 210, 40));
+        kGradientPanel1.add(c_accountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 210, 40));
 
         b_signin1.setText("New? Apply Now!");
-        b_signin1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        b_signin1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         b_signin1.setkBorderRadius(40);
         b_signin1.setkEndColor(new java.awt.Color(102, 102, 255));
         b_signin1.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -130,17 +134,21 @@ public class signin extends javax.swing.JFrame {
                 b_signin1ActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(b_signin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+        kGradientPanel1.add(b_signin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,7 +181,7 @@ public class signin extends javax.swing.JFrame {
         else
         {
             
-            if(obj.signin(Username, Password, a))
+            if(obj.signin(Username, Password, a,obj))
             {
                 obj.signmein();
                 this.setVisible(false);

@@ -299,8 +299,7 @@ public class Librarian extends javax.swing.JFrame {
         kGradientPanel9 = new keeptoo.KGradientPanel();
         kButton8 = new keeptoo.KButton();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        del_book = new javax.swing.JTextField();
         jDialog11 = new javax.swing.JDialog();
         kGradientPanel10 = new keeptoo.KGradientPanel();
         kButton9 = new keeptoo.KButton();
@@ -794,19 +793,15 @@ public class Librarian extends javax.swing.JFrame {
         jLabel23.setText("Select Book");
         kGradientPanel9.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
 
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication3/Capture.PNG"))); // NOI18N
-        jLabel24.setText("jLabel10");
-        kGradientPanel9.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 90, 50));
-
-        jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField15.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField15.setOpaque(false);
-        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+        del_book.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        del_book.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        del_book.setOpaque(false);
+        del_book.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField15ActionPerformed(evt);
+                del_bookActionPerformed(evt);
             }
         });
-        kGradientPanel9.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 210, 39));
+        kGradientPanel9.add(del_book, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 210, 39));
 
         javax.swing.GroupLayout jDialog10Layout = new javax.swing.GroupLayout(jDialog10.getContentPane());
         jDialog10.getContentPane().setLayout(jDialog10Layout);
@@ -1401,7 +1396,7 @@ public class Librarian extends javax.swing.JFrame {
         jDialog16.getContentPane().setLayout(jDialog16Layout);
         jDialog16Layout.setHorizontalGroup(
             jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
             .addGroup(jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog16Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1410,7 +1405,7 @@ public class Librarian extends javax.swing.JFrame {
         );
         jDialog16Layout.setVerticalGroup(
             jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
             .addGroup(jDialog16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog16Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1797,11 +1792,24 @@ public class Librarian extends javax.swing.JFrame {
 
     private void kButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton8ActionPerformed
         // TODO add your handling code here:
+        String search=del_book.getText();
+        int id=Integer.parseInt(search);
+        if(obj.Searchbyid(id))
+        {
+
+            obj.delbook(id);
+            JOptionPane.showMessageDialog(null, "Book deleted");
+            jDialog18.setVisible(false);
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No bookr with such id");      }
     }//GEN-LAST:event_kButton8ActionPerformed
 
-    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+    private void del_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_bookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField15ActionPerformed
+    }//GEN-LAST:event_del_bookActionPerformed
 
     private void kButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton9ActionPerformed
         // TODO add your handling code here:
@@ -2185,7 +2193,7 @@ public class Librarian extends javax.swing.JFrame {
         if(obj.SearchUser(search))
         {
 
-            obj.deluser(username);
+            obj.deluser(search);
             JOptionPane.showMessageDialog(null, "User deleted");
             jDialog18.setVisible(false);
 
@@ -2280,6 +2288,7 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JTextField bk_newtitle;
     private keeptoo.KButton book_return;
     private javax.swing.JPasswordField c_password;
+    private javax.swing.JTextField del_book;
     private javax.swing.JTextField et_email;
     private javax.swing.JTextField et_name;
     private javax.swing.JTextField et_pass;
@@ -2317,7 +2326,6 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -2361,7 +2369,6 @@ public class Librarian extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JMenuItem j_extend;
     private javax.swing.JMenuItem j_return;
     private javax.swing.JComboBox<String> jc_book;

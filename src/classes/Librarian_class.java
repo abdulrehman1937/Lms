@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package classes;
+import java.sql.SQLException;
 import java.util.ListIterator;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author abdul
@@ -37,9 +41,14 @@ public class Librarian_class extends Clerk_class {
     }
     
     @Override
-    public void delbook(Book a)
+    public void delbook(int id)
     {
-        lib.removebook(a);
+        try {
+            lib.removebook(id);
+            lib.init();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
     @Override
     public int user_type()
@@ -62,5 +71,9 @@ public class Librarian_class extends Clerk_class {
         Book temp=new Book(id,Title,Author,Subject,Edition,1,5);
         lib.addnewbook(temp);
     }
-    
+    @Override
+    public boolean Searchbyid(int id)
+    {
+        return lib.Searchbyid(id);
+    }
 }

@@ -158,7 +158,7 @@ public class Borrower extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         jDialog1.setTitle("Password Change");
-        jDialog1.setSize(new java.awt.Dimension(500, 500));
+        jDialog1.setSize(new java.awt.Dimension(1000, 1000));
 
         kGradientPanel2.setBackground(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -167,7 +167,7 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         change_password.setText("Update Password");
-        change_password.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        change_password.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         change_password.setkBorderRadius(40);
         change_password.setkEndColor(new java.awt.Color(102, 102, 255));
         change_password.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -177,7 +177,7 @@ public class Borrower extends javax.swing.JFrame {
                 change_passwordActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(change_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        kGradientPanel2.add(change_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 355, 230, 70));
 
         c_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         c_password.setOpaque(false);
@@ -186,17 +186,17 @@ public class Borrower extends javax.swing.JFrame {
                 c_passwordActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(c_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 30));
+        kGradientPanel2.add(c_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 210, 30));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Current Password");
-        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 130, 30));
+        kGradientPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 220, 30));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("New Password:");
-        kGradientPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, 30));
+        kGradientPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 200, 30));
 
         n_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         n_password.setOpaque(false);
@@ -205,12 +205,12 @@ public class Borrower extends javax.swing.JFrame {
                 n_passwordActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(n_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 30));
+        kGradientPanel2.add(n_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 210, 30));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Confirm Password");
-        kGradientPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, 30));
+        kGradientPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 30));
 
         nc_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         nc_password.setOpaque(false);
@@ -219,20 +219,20 @@ public class Borrower extends javax.swing.JFrame {
                 nc_passwordActionPerformed(evt);
             }
         });
-        kGradientPanel2.add(nc_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 210, 30));
+        kGradientPanel2.add(nc_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 210, 30));
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1553, Short.MAX_VALUE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
         );
 
-        jDialog2.setSize(new java.awt.Dimension(500, 500));
+        jDialog2.setSize(new java.awt.Dimension(1000, 1000));
 
         kGradientPanel3.setBackground(new java.awt.Color(255, 255, 255));
         kGradientPanel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -241,7 +241,7 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kButton2.setText("Add Book");
-        kButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        kButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kButton2.setkBorderRadius(40);
         kButton2.setkEndColor(new java.awt.Color(102, 102, 255));
         kButton2.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -251,12 +251,12 @@ public class Borrower extends javax.swing.JFrame {
                 kButton2ActionPerformed(evt);
             }
         });
-        kGradientPanel3.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+        kGradientPanel3.add(kButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 230, 70));
 
-        l_label123.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        l_label123.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         l_label123.setForeground(new java.awt.Color(204, 204, 204));
         l_label123.setText("Select Book");
-        kGradientPanel3.add(l_label123, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 40));
+        kGradientPanel3.add(l_label123, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, 40));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication3/Capture.PNG"))); // NOI18N
         jButton1.setText("jButton1");
@@ -265,7 +265,7 @@ public class Borrower extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        kGradientPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 80, 60));
+        kGradientPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 80, 70));
 
         l_book.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         l_book.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -275,25 +275,22 @@ public class Borrower extends javax.swing.JFrame {
                 l_bookActionPerformed(evt);
             }
         });
-        kGradientPanel3.add(l_book, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 220, 30));
+        kGradientPanel3.add(l_book, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 330, 30));
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
-                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
         );
 
-        jDialog3.setSize(new java.awt.Dimension(500, 500));
+        jDialog3.setSize(new java.awt.Dimension(1000, 1000));
 
         kGradientPanel4.setBackground(new java.awt.Color(255, 255, 255));
         kGradientPanel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -302,7 +299,7 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         book_return.setText("Return");
-        book_return.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        book_return.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         book_return.setkBorderRadius(40);
         book_return.setkEndColor(new java.awt.Color(102, 102, 255));
         book_return.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -312,31 +309,34 @@ public class Borrower extends javax.swing.JFrame {
                 book_returnActionPerformed(evt);
             }
         });
-        kGradientPanel4.add(book_return, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        kGradientPanel4.add(book_return, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 195, 260, 60));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Select Book");
         kGradientPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 160, 40));
 
+        jc_books.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jc_books.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jc_books.setOpaque(false);
-        kGradientPanel4.add(jc_books, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 180, -1));
+        jc_books.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_booksActionPerformed(evt);
+            }
+        });
+        kGradientPanel4.add(jc_books, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 180, -1));
 
         javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
         jDialog3.getContentPane().setLayout(jDialog3Layout);
         jDialog3Layout.setHorizontalGroup(
             jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog3Layout.createSequentialGroup()
-                .addComponent(kGradientPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog3Layout.setVerticalGroup(
             jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kGradientPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(kGradientPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
         );
 
         jDialog4.setSize(new java.awt.Dimension(500, 500));
@@ -348,7 +348,7 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kButton4.setText("Extend Duration");
-        kButton4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        kButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kButton4.setkBorderRadius(40);
         kButton4.setkEndColor(new java.awt.Color(102, 102, 255));
         kButton4.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -358,16 +358,17 @@ public class Borrower extends javax.swing.JFrame {
                 kButton4ActionPerformed(evt);
             }
         });
-        kGradientPanel5.add(kButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        kGradientPanel5.add(kButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 230, 50));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Select Book");
         kGradientPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 160, 40));
 
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.setOpaque(false);
-        kGradientPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 180, -1));
+        kGradientPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 180, 30));
 
         javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
         jDialog4.getContentPane().setLayout(jDialog4Layout);
@@ -385,7 +386,7 @@ public class Borrower extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jDialog6.setSize(new java.awt.Dimension(500, 500));
+        jDialog6.setSize(new java.awt.Dimension(1000, 1000));
 
         kGradientPanel7.setBackground(new java.awt.Color(255, 255, 255));
         kGradientPanel7.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -393,16 +394,17 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel7.setkStartColor(new java.awt.Color(0, 102, 102));
         kGradientPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jc_book.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jc_book.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nothing Found" }));
         jc_book.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jc_bookActionPerformed(evt);
             }
         });
-        kGradientPanel7.add(jc_book, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 170, 400, 30));
+        kGradientPanel7.add(jc_book, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 620, 30));
 
         kButton5.setText("Select book");
-        kButton5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        kButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kButton5.setkBorderRadius(40);
         kButton5.setkEndColor(new java.awt.Color(102, 102, 255));
         kButton5.setkHoverStartColor(new java.awt.Color(51, 51, 51));
@@ -412,22 +414,19 @@ public class Borrower extends javax.swing.JFrame {
                 kButton5ActionPerformed(evt);
             }
         });
-        kGradientPanel7.add(kButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
+        kGradientPanel7.add(kButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 230, 50));
 
         javax.swing.GroupLayout jDialog6Layout = new javax.swing.GroupLayout(jDialog6.getContentPane());
         jDialog6.getContentPane().setLayout(jDialog6Layout);
         jDialog6Layout.setHorizontalGroup(
             jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog6Layout.createSequentialGroup()
-                .addComponent(kGradientPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
         );
         jDialog6Layout.setVerticalGroup(
             jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kGradientPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
         );
 
         jPopupMenu1.setPreferredSize(new java.awt.Dimension(250, 50));
@@ -443,8 +442,9 @@ public class Borrower extends javax.swing.JFrame {
         });
         jPopupMenu1.add(j_return);
 
-        jDialog5.setSize(new java.awt.Dimension(500, 500));
+        jDialog5.setSize(new java.awt.Dimension(1000, 1000));
 
+        tl_books.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tl_books.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -467,15 +467,11 @@ public class Borrower extends javax.swing.JFrame {
         jDialog5.getContentPane().setLayout(jDialog5Layout);
         jDialog5Layout.setHorizontalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 59, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1323, Short.MAX_VALUE)
         );
         jDialog5Layout.setVerticalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -485,11 +481,11 @@ public class Borrower extends javax.swing.JFrame {
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication3/149071_3ObHrl.jpg"))); // NOI18N
-        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 230));
 
         t_name.setEditable(false);
         t_name.setBackground(new java.awt.Color(255, 255, 255));
-        t_name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_name.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         t_name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         t_name.setOpaque(false);
         t_name.addActionListener(new java.awt.event.ActionListener() {
@@ -497,19 +493,19 @@ public class Borrower extends javax.swing.JFrame {
                 t_nameActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(t_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 210, 39));
+        kGradientPanel1.add(t_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 320, 39));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Name");
         kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 70, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Email");
         kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 70, 30));
 
         t_email.setEditable(false);
         t_email.setBackground(new java.awt.Color(255, 255, 255));
-        t_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_email.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         t_email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         t_email.setOpaque(false);
         t_email.addActionListener(new java.awt.event.ActionListener() {
@@ -517,15 +513,15 @@ public class Borrower extends javax.swing.JFrame {
                 t_emailActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 210, 39));
+        kGradientPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 320, 39));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Phone No.");
-        kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 70, 30));
+        kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 170, 30));
 
         t_pno.setEditable(false);
         t_pno.setBackground(new java.awt.Color(255, 255, 255));
-        t_pno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_pno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         t_pno.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         t_pno.setOpaque(false);
         t_pno.addActionListener(new java.awt.event.ActionListener() {
@@ -533,15 +529,15 @@ public class Borrower extends javax.swing.JFrame {
                 t_pnoActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(t_pno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 210, 39));
+        kGradientPanel1.add(t_pno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 330, 39));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Roll No.");
-        kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 440, 70, 30));
+        kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 440, 140, 30));
 
         t_username.setEditable(false);
         t_username.setBackground(new java.awt.Color(255, 255, 255));
-        t_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_username.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         t_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         t_username.setOpaque(false);
         t_username.addActionListener(new java.awt.event.ActionListener() {
@@ -549,7 +545,7 @@ public class Borrower extends javax.swing.JFrame {
                 t_usernameActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 210, 39));
+        kGradientPanel1.add(t_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 330, 39));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setText("Fine");
@@ -557,7 +553,7 @@ public class Borrower extends javax.swing.JFrame {
 
         t_fine.setEditable(false);
         t_fine.setBackground(new java.awt.Color(255, 255, 255));
-        t_fine.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_fine.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         t_fine.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         t_fine.setOpaque(false);
         t_fine.addActionListener(new java.awt.event.ActionListener() {
@@ -578,10 +574,14 @@ public class Borrower extends javax.swing.JFrame {
                 change_password1ActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
+        kGradientPanel1.add(change_password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 230, 80));
+
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(56, 40));
 
         jMenu1.setText("File");
+        jMenu1.setPreferredSize(new java.awt.Dimension(27, 40));
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem1.setText("Issue New Book");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,6 +590,7 @@ public class Borrower extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem2.setText("Issued Book");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -602,6 +603,7 @@ public class Borrower extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem3.setText("Extend Book Duration");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,6 +612,7 @@ public class Borrower extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem4.setText("Return a Book");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -618,6 +621,7 @@ public class Borrower extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem5.setText("Change Password");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -635,14 +639,14 @@ public class Borrower extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -912,6 +916,10 @@ public class Borrower extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_tl_booksMouseReleased
+
+    private void jc_booksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_booksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jc_booksActionPerformed
 
     /**
      * @param args the command line arguments

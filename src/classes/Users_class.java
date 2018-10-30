@@ -67,9 +67,13 @@ public class Users_class {
     {
         
     }
-    public void delbook(Book a)
+    public void delbook(int a)
     {
         
+    }
+    public boolean Searchbyid(int id)
+    {
+        return false;
     }
     public boolean validate(String Username,String Password)
     {
@@ -209,7 +213,9 @@ public class Users_class {
               return true;
           }
           return false;
-      }
+      
+          
    
          
+}
 }
