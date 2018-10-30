@@ -138,6 +138,12 @@ public class Book_loan {
     {
         return this.returneddate;
     }
+    public String get_todaydate()
+    {
+        LocalDate date=LocalDate.now();
+        Date today=new Date(date.getYear(),date.getMonthValue(),date.getDayOfMonth());
+        return this.datetostring(today);
+    }
     public String datetostring(Date a)
     {
         String s;

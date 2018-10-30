@@ -216,6 +216,17 @@ public class Users_class {
       
           
    
-         
-}
+      }
+      public boolean checkissue(String Username,int id)
+      {
+          Book_loan temp=lib.getmyhistory(Username, id);
+          if(temp!=null)
+          {
+              if(temp.getissue().equals(temp.get_todaydate()))
+              {
+                  return true;
+              }
+          }
+          return false;
+      }
 }

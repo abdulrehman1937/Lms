@@ -811,5 +811,22 @@ public void setAlllib(Library lib)
         it.next().setlib(lib);
     }
 }
+
+
+public Book_loan getmyhistory(String Username,int id)
+{
+    ListIterator<Book_loan> it=null;
+    it=this.historyOfLoans.listIterator();
+    Book_loan temp=null;
+    while(it.hasNext())
+    {
+        temp=it.next();
+        if(temp.getuser().username==Username && temp.getbook().getId()==id)
+        {
+            return temp;
+        }
+    }
+    return null;
+}
 }
 

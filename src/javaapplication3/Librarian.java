@@ -1899,9 +1899,29 @@ public class Librarian extends javax.swing.JFrame {
         {
             if(obj.searchreqbook(book_loan)==false && obj.searchbook(book_loan)==false)
             {
-                obj.reqBook(book_loan);
-                JOptionPane.showMessageDialog(null, "Added");
-                jDialog2.setVisible(false);
+                if(obj.Books.size()>=5 || obj.computefine()>500)
+                {
+                    if(obj.Books.size()>=5)
+                    {
+                        JOptionPane.showMessageDialog(null, "Maximum Number of books reached");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Can issue first pay fine");
+                    }
+                
+                    
+                }
+                else if(obj.checkissue(obj.username, book_loan.getId()))
+                {
+                            JOptionPane.showMessageDialog(null, "Can issue system does not allow same book issued again on same day");
+                }
+                else
+                {
+                    obj.reqBook(book_loan);
+                     JOptionPane.showMessageDialog(null, "Added");
+                    jDialog2.setVisible(false);
+                }
             }
             else
             {
